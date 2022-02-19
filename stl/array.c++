@@ -3,15 +3,16 @@
 using namespace std;
 
 
-// my own namespace
-namespace anubhav{
-    int val = 40;
-}
+array<int,100> arr ; // container to define an array of 100 size
 
 //main function
 int main(){
-    double val = 10.0;
-    cout << val << endl;           // prints val
-    cout << anubhav::val << endl;  // prints val from anubhav namespace
-    return 0;
+    
+    array<int,100> arr2;  // array of size 100 
+  
 }
+
+
+// arr1 will have all zeroes  (because its declared globally)
+// arr2 will have garbage values  (declared inside main())
+

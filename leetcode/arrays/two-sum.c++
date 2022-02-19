@@ -11,7 +11,7 @@ public:
         for (int i = 0; i < nums.size() - 1; i++)
         {
             for (int j = i + 1; j < nums.size(); j++)
-            {
+            {   
                 if (nums.at(i) + nums.at(j) == target)
                 {
                     results.push_back(i);
@@ -23,3 +23,10 @@ public:
         return results;
     }
 };
+
+class main{
+    public static :
+    main(){
+        cin>>
+    }
+}

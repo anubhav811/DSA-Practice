@@ -1,3 +1,5 @@
+// O(n^3)
+
 #include <iostream>
 using namespace std;
 int main()
@@ -11,7 +13,7 @@ int main()
         for (int j = i; j < n; j++)
         {
             sum = 0;
-            for (int k = i; k < j; k++)
+            for (int k = i; k <= j; k++)
             {
                 sum += arr[k];
                 if (sum > max)

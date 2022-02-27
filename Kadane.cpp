@@ -2,11 +2,12 @@
 // O(n)
 
 #include <iostream>
+#include <vector>
+#include <bits/stdc++.h>
 using namespace std;
 int main()
 {
-    int arr[] = {-1, -2, -3, -4, -5, -6};
-    int n = sizeof(arr) / sizeof(arr[0]);
+    vector<int> nums = {-1, -2, -3, -4, -5, -6};
     // Kadane's algorithm
     int curr = 0;
     int maxSum = 0;
@@ -26,16 +27,19 @@ int main()
         {
             curr += nums[i];
             if (curr < 0)
+            {
                 curr = 0;
+            }
             else if (curr > maxSum)
+            {
                 maxSum = curr;
+            }
         }
-        return maxSum;
+        cout << maxSum;
     }
     else
     {
-        return *max_element(nums.begin(), nums.end());
+        cout << *max_element(nums.begin(), nums.end());
     }
-
     return 0;
 }

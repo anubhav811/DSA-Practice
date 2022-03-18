@@ -13,11 +13,11 @@ public:
                 pair[1]=max(intervals[i][1],pair[1]);
             }
             else{
-                res.push_back(pair);
+                res.emplace_back(pair);
                 pair = intervals[i];
             }
         }
-        res.push_back(pair);
+        res.emplace_back(pair);
         return res;
     }
 };

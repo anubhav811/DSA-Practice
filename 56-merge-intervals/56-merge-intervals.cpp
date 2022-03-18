@@ -7,14 +7,14 @@ public:
         sort(intervals.begin(),intervals.end());
         vector<int> pair = intervals[0];
         
-        for(auto it:intervals){    
+        for(int i=0;i<intervals.size();i++){    
             
-            if(it[0]<=pair[1]){
-                pair[1]=max(it[1],pair[1]);
+            if(intervals[i][0]<=pair[1]){
+                pair[1]=max(intervals[i][1],pair[1]);
             }
             else{
                 res.push_back(pair);
-                pair = it;
+                pair = intervals[i];
             }
         }
         res.push_back(pair);

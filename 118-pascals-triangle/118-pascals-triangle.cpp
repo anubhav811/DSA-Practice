@@ -5,9 +5,9 @@ public:
         vector<vector<int>> main;
         
         for(int i=0 ; i<numRows ; i++){
+        
             vector<int> row(i+1,1);
             if(i>1){
-                cout<<i<<endl;
                 for(int j=1;j<i;j++){
                     row[j]=main[i-1][j-1]+main[i-1][j];
                 }                

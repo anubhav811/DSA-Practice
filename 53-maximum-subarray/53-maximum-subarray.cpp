@@ -1,7 +1,9 @@
 class Solution {
 public:
     int maxSubArray(vector<int>& nums) {
-     int curr=0;
+        
+        
+        int curr=0;
         int maxSum=0;
         bool hasPositives = false;
         for(int i = 0 ; i<nums.size();i++){

@@ -16,7 +16,6 @@ public:
                 two++;
             }
         }
-        
         for(int i = 0 ; i<zero;i++){
             nums[i]=0;
         }

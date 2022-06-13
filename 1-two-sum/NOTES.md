@@ -8,8 +8,10 @@ Now using formula
 *target-x=y*
 where x is the value of element (key of map) . which we get while traversing
 If the calculated value of y exists inside the map (as a key) then , current value of x & y from the map is the result
+otherwise just put the value in map .=>  map[value in array] = its index
 Time: O(n) , Space:O(n)
 ***Appoach 3: Two Pointer approach***
+Make an array of pairs with values and their index.
 Suitable for sorted array (ascending)
 If array not sorted , then approach 2 is best but if sorted then approach 3
 Make two pointers : start and end

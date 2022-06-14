@@ -1,21 +1,42 @@
 class Solution {
 public:
      vector<int> twoSum(vector<int> &nums, int target)
-    {
-
-        vector<int> results; // an extra vector to store the result
-        for (int i = 0; i < nums.size() - 1; i++)
+    {   
+          unordered_map<int,int> m;
+         for (int i = 0; i < nums.size(); i++)
         {
-            for (int j = i + 1; j < nums.size(); j++)
-            {   
-                if (nums.at(i) + nums.at(j) == target)
-                {
-                    results.push_back(i);
-                    results.push_back(j);
-                    break;
-                }
-            }
+             int x = nums[i]           ;  //  Current value
+           int y=target-x;
+             if(m.find(y)!=m.end()){       // check if "key" i.e the value according to array exists in the map
+                 return {i,m[y]};
+             }
+             m[x]=i;                       // then insert anyways.
         }
-        return results;
+        
+        return {-1,-1};
      }
+         
+//          APPROACH 3
+//          vector<pair<int,int>> v;
+//          for(int i =0 ;i<nums.size();i++){ 
+//              v.push_back({nums[i],i});
+//          }
+//          sort(v.begin(),v.end());
+//          int s = 0;
+//          int e = nums.size()-1;
+//          while(s<e){
+//              if(v[s].first + v[e].first == target){
+//                  return {v[s].second,v[e].second};
+//              }
+//              else if(v[s].first + v[e].first > target){
+//                  e--;
+//              }
+//              else{
+//                  s++;
+//              }
+//          }
+         
+//          return {-1,-1};
+         
+        
 };

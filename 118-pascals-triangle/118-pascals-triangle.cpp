@@ -14,7 +14,6 @@ public:
 
             }
             else{
-            vector<int> row(i+1,1);
             main.push_back(row);
             }
         }

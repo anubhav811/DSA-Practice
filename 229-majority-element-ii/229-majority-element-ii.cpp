@@ -2,6 +2,8 @@ class Solution {
 public:
     vector<int> majorityElement(vector<int>& nums) {
         
+        // Boyre Moore Voting algo -> Time: O(n) , Space = O(1)
+        
         int count1=0,count2=0,num1=-1,num2=-1;
         for(int i=0;i<nums.size();i++){
             
@@ -25,10 +27,7 @@ public:
         return ans;
 
         
-        
-        
-        
-        // Approach : Hashmap 
+        // Approach : Hashmap -> Time: O(n) , Space = O(n)  
         // unordered_map<int,int> m;
         // vector<int> res;
         // for(int i=0;i<nums.size();i++){

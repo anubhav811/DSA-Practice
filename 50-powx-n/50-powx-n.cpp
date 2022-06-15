@@ -1,21 +1,24 @@
 class Solution {
 public:
     double myPow(double x, int n) {
-            if(n<0) return 1/x * myPow(1/x, -(n+1));
-
-        if(n==0){
-            return 1;
-        }
-        if(n==1){
-            return x;
-        }
-        if(n==2){
-            return x*x;
-        }
-           if(n%2==0) return myPow( myPow(x, n/2), 2);
-    else return x*myPow( myPow(x, n/2), 2);
-
         
-    return 1;
+        double res = 1 ;
+        long nn = n;
+        if(nn<0) nn*=-1;
+        
+        while(nn>0){
+            if(nn%2 == 1){
+                res = res * x;
+                nn = nn-1;
+            }else{
+                x=x*x;
+                nn=nn/2;
+            }
+        }
+        if(n<0){
+            res = 1/res;
+        }
+        return res;
     }
+    
 };

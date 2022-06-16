@@ -1,11 +1,11 @@
-/*//Simple SET
+/*//Simple SET     TLE
 class Solution {
 public:
     vector<vector<int>> fourSum(vector<int>& nums, int target) {
         set<vector<int>> ans;
         int n=nums.size();
         sort(nums.begin(),nums.end());
-        int sum;
+        long sum;
         
         for(int i=0;i<n-3;++i) {
             //if(i>0 and nums[i]==nums[i-1])  continue;   //Skip same values for index i to avoid duplicates
@@ -15,7 +15,7 @@ public:
                     //if(k>j+1 and nums[k]==nums[k-1])    continue;   //Skip same values for index k to avoid duplicates
                     for(int l=k+1;l<n;++l) {
                         //if(l>k+1 and nums[l]==nums[l-1])    continue;   //Skip same values for index l to avoid duplicates
-                        sum=nums[i]+nums[j]+nums[k]+nums[l];
+                        sum=(long) nums[i]+nums[j]+nums[k]+nums[l];
                         if(sum>target)
                             break;
                         else if(sum==target) {
@@ -77,8 +77,10 @@ public:
         return res;
     }
 };
-/*
-//HashMap
+
+
+
+/*//HashMap
 class Solution {
 public:
     vector<vector<int>> fourSum(vector<int>& nums, int target) {

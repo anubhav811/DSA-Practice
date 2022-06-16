@@ -1,6 +1,7 @@
 class Solution {
 public:
-    int Merge(vector < int > & nums, int low, int mid, int high) {
+      vector < int > t;
+    int Merge(vector < int > & nums, int low, int mid, int high,vector<int> t) {
   int total = 0;
   int j = mid + 1;
   for (int i = low; i <= mid; i++) {
@@ -11,7 +12,6 @@ public:
     total += (j - (mid + 1));
   }
 
-  vector < int > t;
   int left = low, right = mid + 1;
 
   while (left <= mid && right <= high) {
@@ -35,16 +35,16 @@ public:
   }
   return total;
 }
-int MergeSort(vector < int > & nums, int low, int high) {
+int MergeSort(vector < int > & nums, int low, int high , vector<int> t) {
 
   if (low >= high) return 0;
   int mid = (low + high) / 2;
-  int inv = MergeSort(nums, low, mid);
-  inv += MergeSort(nums, mid + 1, high);
-  inv += Merge(nums, low, mid, high);
+  int inv = MergeSort(nums, low, mid,t);
+  inv += MergeSort(nums, mid + 1, high,t);
+  inv += Merge(nums, low, mid, high,t);
   return inv;
 }
 int reversePairs(vector < int > & arr) {
-  return MergeSort(arr, 0, arr.size() - 1);
+  return MergeSort(arr, 0, arr.size() - 1,t);
 }
 };

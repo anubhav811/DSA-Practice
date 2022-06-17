@@ -4,28 +4,19 @@ public:
     {
   
   // Approach 2 Hashset
-          unordered_set < int > hashSet;
-  for (int num: nums) {
-    hashSet.insert(num);
-  }
-
-  int longestStreak = 0;
-
-  for (int num: nums) {
-    if (!hashSet.count(num - 1)) {
-      int currentNum = num;
-      int currentStreak = 1;
-
-      while (hashSet.count(currentNum + 1)) {
-        currentNum += 1;
-        currentStreak += 1;
-      }
-
-      longestStreak = max(longestStreak, currentStreak);
-    }
-  }
-
-  return longestStreak;
+       unordered_set<int> s;
+        for(int i=0;i<nums.size();i++)
+        {
+            s.insert(nums[i]);
+        }
+	   int longest = 0;
+	   for(int num : s) {
+        if(s.count(num - 1)) continue;
+		int j = 1;
+		while(s.count(num + j)) j++; 
+		longest = max(longest, j);
+	}
+	return longest;
 
     }
         

@@ -2,7 +2,7 @@ class Solution {
 public:
     int longestConsecutive(vector<int>& nums)
     {
-  
+/*  
   // Approach 2 Hashset
        unordered_set<int> s;
         for(int i=0;i<nums.size();i++)
@@ -19,8 +19,8 @@ public:
 	return longest;
 
     }
-        
-  /*      // Approach 1 Brute Force
+  */      
+       // Approach 1 Brute Force
         if(nums.size()==0){
             return 0;
         }    
@@ -43,5 +43,5 @@ public:
         }
         return ans;
     }
-*/
+
 };

@@ -10,10 +10,9 @@
  */
 class Solution {
 public:
-    ListNode* reverseList(ListNode* head) {
-        
-        if(head==NULL || head->next == NULL)
-            return head;
+    ListNode* iterative(ListNode* &head)
+    {
+        if(head==NULL || head->next == NULL) return head;
         
         ListNode* prev = NULL;
         ListNode* curr = head;
@@ -23,8 +22,18 @@ public:
             curr->next = prev;
             prev=curr;
             curr=forward;
-            
-        }
-        return prev;
+            }
+        head = prev;
+        return head;
+    }
+       
+//     ListNode* recursive(ListNode* &head){
+        
+//     }
+    
+    ListNode* reverseList(ListNode* head) {
+        
+        return iterative(head);
+        
     }
 };

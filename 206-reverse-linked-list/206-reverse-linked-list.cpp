@@ -27,13 +27,25 @@ public:
         return head;
     }
        
-//     ListNode* recursive(ListNode* &head){
-        
-//     }
+    void recursive(ListNode* &head, ListNode* curr, ListNode* prev)
+    {
+      if(curr==NULL){
+          head=prev;
+          return ;
+      }
+      ListNode* forward =  curr->next;
+      recursive(head,forward,curr);
+      curr->next = prev;
+    }
     
     ListNode* reverseList(ListNode* head) {
+        // Approach 1
+        // return iterative(head);
         
-        return iterative(head);
-        
+        // Approach 2
+        ListNode* curr = head;
+        ListNode* prev = NULL;
+        recursive(head,curr,prev);
+        return head;
     }
 };

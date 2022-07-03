@@ -9,38 +9,61 @@
 class Solution {
 public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
-    		int n = 0;
-		int m = 0;
-		ListNode* ptr1 = headA;
-		ListNode* ptr2 = headB;
-		while(ptr1 != NULL){
-			n++;
-			ptr1 = ptr1 -> next;
-		}
-		while(ptr2 != NULL){
-			m++;
-			ptr2 = ptr2 -> next;
-		}
-		int t = abs(n - m);
-		if(n > m){
-			while(t){
-				headA = headA -> next;
-				t--;
+        
+                /// OPTIMAL APPROACH 2  : Shift to other's head
+ 
+    	ListNode *ptr1 = headA;
+		ListNode *ptr2 = headB;
+		while(ptr1 != ptr2){
+			if(ptr1 == NULL){
+				ptr1 = headB;
+			}
+			else{
+				ptr1 = ptr1 -> next;
+			}
+			if(ptr2 == NULL){
+				ptr2 = headA;
+			}
+			else{
+				ptr2 = ptr2 -> next;
 			}
 		}
-		else{
-			while(t){
-				headB = headB -> next;
-				t--;
-			}
-		}
-		while(headA != NULL and headB != NULL){
-			if(headA == headB){
-				return headA;
-			}
-			headA = headA -> next;
-			headB = headB -> next;
-		}
-		return NULL;
+		return ptr1;
+
+        
+        /// OPTIMAL APPROACH 1  : Difference of len 
+		// int n = 0;
+		// int m = 0;
+		// ListNode* ptr1 = headA;
+		// ListNode* ptr2 = headB;
+		// while(ptr1 != NULL){
+		// 	n++;
+		// 	ptr1 = ptr1 -> next;
+		// }
+		// while(ptr2 != NULL){
+		// 	m++;
+		// 	ptr2 = ptr2 -> next;
+		// }
+		// int t = abs(n - m);
+		// if(n > m){
+		// 	while(t){
+		// 		headA = headA -> next;
+		// 		t--;
+		// 	}
+		// }
+		// else{
+		// 	while(t){
+		// 		headB = headB -> next;
+		// 		t--;
+		// 	}
+		// }
+		// while(headA != NULL and headB != NULL){
+		// 	if(headA == headB){
+		// 		return headA;
+		// 	}
+		// 	headA = headA -> next;
+		// 	headB = headB -> next;
+		// }
+		// return NULL;
 	}
 };

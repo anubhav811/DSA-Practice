@@ -10,12 +10,15 @@
  */
 class Solution {
 public:
-      int lengthOfLinkedList(ListNode* head) {
+    int lengthOfLinkedList(ListNode* head) {
     int length = 0;
+        
     while(head != NULL) {
+    
         ++length;
         head = head->next;
     }
+        
     return length;
 }
     ListNode* reverseKGroup(ListNode* head, int k) {

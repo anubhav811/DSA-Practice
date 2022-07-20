@@ -10,57 +10,49 @@
  */
 class Solution {
 public:
-    ListNode* reverse(ListNode* ptr) {
-    ListNode* pre=NULL;
-    ListNode* nex=NULL;
-    while(ptr!=NULL) {
-        nex = ptr->next;
-        ptr->next = pre;
-        pre=ptr;
-        ptr=nex;
+    ListNode* reverse(ListNode *head)
+    {
+        
+        ListNode *current = head;
+        ListNode *prev = NULL, *next = NULL;
+  
+        while (current != NULL) 
+        {           
+            next = current->next;
+            current->next = prev;
+            prev = current;
+            current = next;
+        }
+        return prev;
     }
-    return pre;
-}
-
-bool isPalindrome(ListNode* head) {
-    if(head==NULL||head->next==NULL) return true;
-        
-    ListNode* slow = head;
-    ListNode* fast = head;
-        
-    while(fast->next!=NULL&&fast->next->next!=NULL) {
-        slow = slow->next;
-        fast = fast->next->next;
-    }
-        
-    slow->next = reverse(slow->next);
-    slow = slow->next;
-        
-    while(slow!=NULL) {
-        if(head->val != slow->val) return false;
-        head = head->next;
-        slow = slow->next;
-    }
-    return true;
-}
-
-//    Approach 1 
     
-    //bool isPalindrome(ListNode* head) {
+    bool isPalindrome(ListNode* head) 
+    {
+        ListNode *fast, *slow;
+        fast = slow = head;
+        while(fast->next != NULL && fast->next->next != NULL)
+        {
+            slow = slow->next;
+            fast = fast->next->next;
+        }
         
+        ListNode *temp = reverse(slow->next);  // reversing the half linked list
+        slow->next = temp;  // joining the reversed list to the main list
         
-//         vector<int> arr;
-//         while(head != NULL) {
-//             arr.push_back(head->val);
-//             head = head->next;
-//         }
-//         for(int i=0;i<arr.size()/2;i++){
-//             if(arr[i] != arr[arr.size()-i-1]){
-//                 return false; 
-//             }
-//         }
+        slow= slow->next;
+        fast = head;
         
-//         return true;
-
-//     }
+        while(head != NULL && slow != NULL)
+        {
+            if(fast->val != slow->val)
+                return false;
+            
+            fast = fast->next;
+            slow = slow->next;
+        }
+        
+        return true;
+    
+        
+    }
 };

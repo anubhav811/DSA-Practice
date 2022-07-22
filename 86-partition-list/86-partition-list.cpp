@@ -12,7 +12,7 @@ class Solution {
 public:
     ListNode* partition(ListNode* head, int x) {
         
-        // Approach 2 : Two Pointers  O(1)
+        // Approach 2 : Two Pointers  O(1) 
         
         ListNode* less  = new ListNode(0);
         ListNode* great = new ListNode(0);

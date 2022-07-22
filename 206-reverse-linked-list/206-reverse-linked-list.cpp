@@ -10,23 +10,7 @@
  */
 class Solution {
 public:
-    ListNode* iterative(ListNode* &head)
-        {
-            if(head==NULL || head->next == NULL) return head;
-            ListNode* prev = NULL;
-            ListNode* curr = head;
-            ListNode* forward;
-            while(curr != NULL){
-                forward = curr->next;
-                curr->next = prev;
-                prev=curr;
-                curr=forward;
-                }
-            head = prev;
-            return head;
-        }
-       
-    ListNode* recursive(ListNode* &head)
+         ListNode* recursive(ListNode* &head)
         {
             if(head==NULL || head->next == NULL) return head;
             ListNode* newHead = recursive(head->next);

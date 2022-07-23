@@ -4,7 +4,7 @@ public:
     void solveRecur(int start , vector<int> currSubset, vector<int> &nums , vector<vector<int>> &superSet){
         superSet.push_back(currSubset);
         for(int i=start ; i<nums.size(); i++){
-            if(i>start && nums[i] == nums[i-1]){
+            if(i>start && nums[i]  == nums[i-1]){
                 continue;
             }
             currSubset.push_back(nums[i]);
@@ -12,7 +12,6 @@ public:
             currSubset.pop_back();
         }
     }
-
 
     // FUNCTION for APPROACH 1
 //     void solveRecur(int start ,vector<int> currSubset , vector<int> &arr, set<vector<int>> &superSet){

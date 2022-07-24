@@ -1,7 +1,7 @@
 class Solution {
 public:
     
-    bool canBePlaced(int row,int col, vector<vector<char>> board,char c){
+    bool canBePlaced(int row,int col, vector<vector<char>> &board,char c){
         for(int i = 0 ; i<9; i++){
             if(board[i][col]==c){
                 return false;

@@ -12,7 +12,7 @@ public:
             return true;
         }        
         
-        for (const auto& word: wordDict)
+        for (auto word: wordDict)
         {
             if (start + word.size()-1 <= s.size() && s.substr(start, word.size()) == word)
             {

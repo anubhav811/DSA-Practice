@@ -1,6 +1,7 @@
 class Solution {
 public:
     vector<int> searchRange(vector<int>& nums, int target) {
+        
         vector<int> ans;
         ans.push_back(INT_MAX);
         ans.push_back(INT_MIN);

@@ -1,25 +1,29 @@
 class Solution {
 public:
-    vector<int> searchRange(vector<int>& nums, int target) {
+    
+    int binSrch(int l , int r , vector<int> nums , int target, bool checkLeft){
         
-        vector<int> ans;
-        ans.push_back(INT_MAX);
-        ans.push_back(INT_MIN);
-        
-        for(int i = 0 ; i<nums.size();i++){
-            if(nums[i]==target){
-                ans[0]=min(ans[0],i);
-                ans[1]=max(ans[1],i);
+        int ans = -1;
+        while(l<=r){
+            int m = (l+r)/2;
+            if(nums[m]>target){
+                r=m-1;
+            }
+            else if(nums[m]<target){
+                l=m+1;
+            }
+             else{
+                ans = m;
+                if(checkLeft) r=m-1;
+                else l=m+1;
             }
         }
+        return ans;
         
-        if(ans[0] == INT_MAX){
-            ans[0] = -1;
-        }
-        if(ans[1] == INT_MIN){
-            ans[1] = -1;
-        }
+    }
+    vector<int> searchRange(vector<int>& nums, int target) {
         
+        vector<int>  ans={binSrch(0,nums.size()-1,nums,target,true),binSrch(0,nums.size()-1,nums,target,false)} ;
         return ans;
     }
 };

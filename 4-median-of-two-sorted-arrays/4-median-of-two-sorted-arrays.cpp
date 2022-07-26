@@ -11,9 +11,7 @@ public:
         }
         
         sort(res.begin(),res.end());
-          for(auto it : res){
-            cout<<it<<endl;
-          }
+          
         if(res.size()%2==0){
             ans = (res[(res.size()-1)/2]+res[(res.size()-1)/2+1])/2.0 ;
             return ans; 

@@ -13,47 +13,32 @@ public:
     ListNode* middleNode(ListNode* head) {
         // tortoise hare approach
         
-        // ListNode* slow = head; 
-        // ListNode* fast = head;
-        // while (fast!=NULL && fast->next!=NULL){
-        //     slow = slow->next; 
-        //     fast = fast->next->next;
-        // }
-        // return slow;
+        ListNode* slow = head; 
+        ListNode* fast = head;
+        while (fast!=NULL && fast->next!=NULL){
+            slow = slow->next; 
+            fast = fast->next->next;
+        }
+        return slow;
 
-        ListNode* dummy = head;
-        int l = 0;
-        while(dummy!=NULL){
-            dummy = dummy->next;
-            l++;
-        }
-        
-        int mid = l/2 ;
-        
-        dummy = head;
-        int c=0;
-        while(c<mid){
-            dummy = dummy->next;
-            c++;
-        }
-        return dummy;
-        
-        // Approach 1 : Find length and then find mid and then traverse
-//         ListNode* temp1 = head;
+
+        // Approach 1 
+//         ListNode* dummy = head;
 //         int l = 0;
-//         while(temp1!=NULL){
-//             temp1 = temp1->next;
+//         while(dummy!=NULL){
+//             dummy = dummy->next;
 //             l++;
 //         }
-
-//         int mid = l/2;
         
-//         ListNode* temp2 = head;
-//         int c = 0;
+//         int mid = l/2 ;
+        
+//         dummy = head;
+//         int c=0;
 //         while(c<mid){
-//             temp2 = temp2->next;
+//             dummy = dummy->next;
 //             c++;
 //         }
-//         return temp2;
+//         return dummy;
+        
     }
 };

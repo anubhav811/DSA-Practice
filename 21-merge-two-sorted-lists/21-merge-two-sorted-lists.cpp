@@ -11,37 +11,65 @@
 class Solution {
 public:
     ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
-          // when list1 is empty then 
-        // our output will be same as list2
+        
+        // Approach 1 : Use extra list
+        if(l1==NULL && l2==NULL) return NULL;
+        
         if(l1 == NULL) return l2; 
 
-        // when list2 is empty then our output 
-        // will be same as list1
         if(l2 == NULL) return l1;
-
-        // pointing l1 and l2 to smallest and greatest one
-        if(l1->val > l2->val) std::swap(l1,l2);
-
-        // act as head of resultant merged list
-        ListNode* res = l1;
-
-        while(l1 != NULL && l2 != NULL) {
- 
-            ListNode* temp = NULL;
-
-            while(l1 != NULL && l1->val <= l2->val) {
-
-                temp = l1;//storing last sorted node  
+        
+        ListNode* res = new ListNode();
+        ListNode* resHead = res;
+        
+        while(l1!=NULL && l2!=NULL){
+            if(l1->val <= l2->val){
+                resHead->next = new ListNode(l1->val);;
                 l1 = l1->next;
             }
-
-            // link previous sorted node with 
-            // next larger node in list2
-            temp->next = l2;
-            std::swap(l1,l2);
+            else {
+                resHead->next = new ListNode(l2->val);;
+                l2 = l2->next;
+            }
+            resHead = resHead->next;
         }
+        
+        if(l1!=NULL)
+            resHead->next = l1;
+        else
+            resHead->next = l2;
+        
+        
+        return res->next;
 
-        return res;
+        
+        // Approach 2 : In Place
+
+//         if(l1 == NULL) return l2; 
+
+//         if(l2 == NULL) return l1;
+
+//         if(l1->val > l2->val) swap(l1,l2);
+
+//         ListNode* res = l1;
+
+//         while(l1 != NULL && l2 != NULL) {
+ 
+//             ListNode* temp = NULL;
+
+//             while(l1 != NULL && l1->val <= l2->val) {
+
+//                 temp = l1;//storing last sorted node  
+//                 l1 = l1->next;
+//             }
+
+//             // link previous sorted node with 
+//             // next larger node in list2
+//             temp->next = l2;
+//             std::swap(l1,l2);
+//         }
+
+//         return res;
     }
       
     

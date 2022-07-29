@@ -1,7 +1,6 @@
 class Solution {
 public:
     string getPattern(string pattern){
-        
         string numeric;
         
         if(pattern.size() == 0) return {};

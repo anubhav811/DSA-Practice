@@ -25,7 +25,6 @@ public:
             slow = slow->next;
         }
         
-        
         slow->next = slow->next->next;
         
         return start->next;

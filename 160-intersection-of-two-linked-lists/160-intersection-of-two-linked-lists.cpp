@@ -8,27 +8,43 @@
  */
 class Solution {
 public:
-    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+    ListNode *getIntersectionNode(ListNode *head1, ListNode *head2) {
         
-                /// OPTIMAL APPROACH 2  : Shift to other's head
+        
+        // Approach 1:  Brute Force
+        while(head2 != NULL) {
+        ListNode* temp = head1;
+        while(temp != NULL) {
+            //if both nodes are same
+            if(temp == head2) return head2;
+            temp = temp->next;
+        }
+        head2 = head2->next;
+        }
+        //intersection is not present between the lists return null
+        return NULL;
+    
+        
+    
+        /// OPTIMAL APPROACH 2  : Shift to other's head
  
-    	ListNode *ptr1 = headA;
-		ListNode *ptr2 = headB;
-		while(ptr1 != ptr2){
-			if(ptr1 == NULL){
-				ptr1 = headB;
-			}
-			else{
-				ptr1 = ptr1 -> next;
-			}
-			if(ptr2 == NULL){
-				ptr2 = headA;
-			}
-			else{
-				ptr2 = ptr2 -> next;
-			}
-		}
-		return ptr1;
+//     	ListNode *ptr1 = headA;
+// 		ListNode *ptr2 = headB;
+// 		while(ptr1 != ptr2){
+// 			if(ptr1 == NULL){
+// 				ptr1 = headB;
+// 			}
+// 			else{
+// 				ptr1 = ptr1 -> next;
+// 			}
+// 			if(ptr2 == NULL){
+// 				ptr2 = headA;
+// 			}
+// 			else{
+// 				ptr2 = ptr2 -> next;
+// 			}
+// 		}
+// 		return ptr1;
 
         
         /// OPTIMAL APPROACH 1  : Difference of len 

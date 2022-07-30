@@ -6,26 +6,41 @@
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
+#include<bits/stdc++.h>
+using namespace std;
 class Solution {
 public:
     ListNode *getIntersectionNode(ListNode *head1, ListNode *head2) {
         
         
-        // Approach 1:  Brute Force
-        while(head2 != NULL) {
-        ListNode* temp = head1;
-        while(temp != NULL) {
-            //if both nodes are same
-            if(temp == head2) return head2;
-            temp = temp->next;
+        // Naive Approach 1:  Brute Force TC: O(m*n)  SC : O(1)
+//         while(head2 != NULL) {
+//         ListNode* temp = head1;
+//         while(temp != NULL) {
+//             //if both nodes are same
+//             if(temp == head2) return head2;
+//             temp = temp->next;
+//         }
+//         head2 = head2->next;
+//         }
+//         //intersection is not present between the lists return null
+//         return NULL;
+    
+        // Naive Approach 2: Hashing 
+        unordered_set<ListNode *> st;
+        while(head1!=NULL)
+        {
+            st.insert(head1);
+            head1=head1->next;
         }
-        head2 = head2->next;
+        while(head2!=NULL){
+            if(st.find(head2) != st.end()){
+                return head2;
+            }
+            head2 = head2->next;
         }
-        //intersection is not present between the lists return null
         return NULL;
-    
         
-    
         /// OPTIMAL APPROACH 2  : Shift to other's head
  
 //     	ListNode *ptr1 = headA;

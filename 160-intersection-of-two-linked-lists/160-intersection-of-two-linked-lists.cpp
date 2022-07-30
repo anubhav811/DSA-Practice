@@ -86,7 +86,7 @@ public:
         
         // Optimal Approach 2  : Shift to other's head
  
-            	    ListNode *ptr1 = head1;
+        		    ListNode *ptr1 = head1;
         		    ListNode *ptr2 = head2;
         		    while(ptr1 != ptr2){
         			    if(ptr1 == NULL){
@@ -103,7 +103,5 @@ public:
         			    }
         		}
         		return ptr1;
-
-     
 	}
 };

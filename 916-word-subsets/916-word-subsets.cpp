@@ -12,11 +12,11 @@ public:
             }
         }
         vector<string>res;
-        for(auto x:words1){
+        for(auto word:words1){
             vector<int>temp(26,0);
-            for(auto y:x) 
+            for(auto letter:word) 
             {   
-                temp[y-'a']++;
+                temp[letter-'a']++;
             }
             bool flag=true;
             for(int i=0 ; i<26 ; i++){
@@ -26,7 +26,7 @@ public:
                 }         
             }
             if(flag) {
-                res.push_back(x);
+                res.push_back(word);
             }
         }
         return res;

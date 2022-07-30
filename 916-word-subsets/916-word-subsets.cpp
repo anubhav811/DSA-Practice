@@ -3,33 +3,35 @@ public:
 
     vector<string> wordSubsets(vector<string>& words1, vector<string>& words2) {
         
-       vector<int>freq(26,0);           
+        vector<string> ans;
+        
+        vector<int> mainFreq(26,0);
         for(auto word:words2){
-            vector<int>temp(26,0);
+            vector<int> currFreq(26,0);
             for(auto letter:word){
-                temp[letter-'a']++;
-                freq[letter-'a'] = max(freq[letter-'a'],temp[letter-'a']); 
+                currFreq[letter-'a']++;
+                mainFreq[letter-'a'] = max(mainFreq[letter-'a'],currFreq[letter-'a']);
             }
         }
-        vector<string>res;
+        
         for(auto word:words1){
-            vector<int>temp(26,0);
-            for(auto letter:word) 
-            {   
-                temp[letter-'a']++;
+            vector<int> currFreq(26,0);
+            for(auto letter:word){
+                currFreq[letter-'a']++;
             }
-            bool flag=true;
-            for(int i=0 ; i<26 ; i++){
-                if(freq[i]>temp[i]) {
-                    flag=false;
+            bool flag = true;
+            
+            for(int i=0;i<26 ; i++){
+                if(mainFreq[i]>currFreq[i]){
+                    flag = false;
                     break;
-                }         
+                }
             }
-            if(flag) {
-                res.push_back(word);
-            }
+             if(flag){
+                    ans.push_back(word);
+                }
         }
-        return res;
+        return ans;
     
     }
 };

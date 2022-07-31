@@ -35,10 +35,10 @@ public:
         // the distance we have to travel to reach the breaking point   
         int bp = len - k;
           
-        
         // reaching the BP
-        while(bp--){
+        while(bp>0){
             itr=itr->next;
+            bp--;
             }
         
         // now itr has reached the breaking point 

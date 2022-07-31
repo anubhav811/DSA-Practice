@@ -47,18 +47,29 @@ public:
         
     // STEP 3 : Pointing next pointers for deep copy
         // we have to
-        Node* dummy = new Node(0);
-        Node* temp = dummy;
-        itr = head;
-        Node* fast;
-        while(itr != NULL) {
-            fast = itr->next->next;
-            temp->next = itr->next;
-            itr->next = fast;
-            temp = temp->next;
-            itr = fast;
-        }
-        return dummy->next;
+        
+        itr=head;
+        
+        Node* pseudoHead = new Node(0);
+        Node* copy = pseudoHead; 
+        Node* copyItr = pseudoHead;
+        Node* fwd ;
+
+        while (itr != NULL) {
+            fwd = itr->next->next;
+
+        // extract the copy
+            copy = itr->next;
+            copyItr->next = copy;
+            copyItr = copy;
+
+        // restore the original list
+            itr->next = fwd;
+
+            itr = fwd;
+      }
+
+      return pseudoHead->next; 
         
         
         

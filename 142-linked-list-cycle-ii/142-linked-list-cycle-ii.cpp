@@ -10,35 +10,38 @@ class Solution {
 public:
     ListNode *detectCycle(ListNode *head) {
         
+//     if(head == NULL||head->next == NULL) return NULL;
         
-    if(head == NULL||head->next == NULL) return NULL;
+//     ListNode* fast = head;
+//     ListNode* slow = head;
+//     ListNode* entry = head;
         
-    ListNode* fast = head;
-    ListNode* slow = head;
-    ListNode* entry = head;
-        
-    while(fast->next != NULL&&fast->next->next != NULL) {
-        slow = slow->next;
-        fast = fast->next->next;
+//     while(fast->next != NULL&&fast->next->next != NULL) {
+//         slow = slow->next;
+//         fast = fast->next->next;
             
-        if(slow == fast) {
-            while(slow != entry) {
-                slow = slow->next;
-                entry = entry->next;
-            }
-            return slow;
-        }
-    }
-    return NULL;
+//         if(slow == fast) {
+//             while(slow != entry) {
+//                 slow = slow->next;
+//                 entry = entry->next;
+//             }
+//             return slow;
+//         }
+//     }
+//     return NULL;
 
         
-//          Approach 1 
-    // unordered_set<ListNode*> st;
-    // while(head != NULL) {
-    //     if(st.find(head) != st.end()) return head;
-    //     st.insert(head);
-    //     head = head->next;
-    // }
-    // return NULL;
+//          Approach 1 : Insert nodes in set . Check if node is inserted before . that shows where is the cycle starting
+    
+        unordered_set<ListNode*> st;
+        while(head!=NULL){
+            if(st.find(head)!=st.end()){
+                return head;
+            }
+            st.insert(head);
+            head = head->next;
+        }
+        return NULL;
+   
     }
 };

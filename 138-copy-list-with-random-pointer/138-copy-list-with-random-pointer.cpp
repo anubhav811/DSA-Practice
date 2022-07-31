@@ -18,33 +18,76 @@ class Solution {
 public:
     Node* copyRandomList(Node* head) {
         
+        // APPROACH 2: OPTIMAL -> TC:O(N)+O(N)+O(N) SC:O(N)
         
-        
-        // Approach 1: HASMAP\
-        
-        map<Node*, Node*> m;
+    // STEP 1 : MAKE A COPY NODE AND INSERT IT BETWEEN 2 NODES
+        // EXAMPLE : 1' WILL BE INSERTED BETWEEN 1 and 2
         
         Node* itr = head;
-        
-        // in the map make key as the curr node and its copy as the value.
-        // ONLY COPY THE val not the two pointers
-        while (itr) {
+        while(itr){
+            Node* copy = new Node(itr->val);
+            copy->next = itr->next;
+            itr->next = copy;
             
-             m[itr] =new Node(itr->val);  //key = itr and value = new Node(itr->val)
-           
-            itr = itr->next;
+        // for iterating now we have to move the itr node                                       twice as we have inserted a new node between them
+            
+            itr=itr->next->next;
         }
-        // Keeping itr back to start(head)
-        itr = head;
         
-        // iterate and then assign pointers to the copy by using map
-        while (itr!=NULL) {
+    // STEP 2 : SMARTLY COPY THE RANDOM POINTERS
+        
+        // bringing itr back to start
+        itr=head;
+        
+        while(itr){
+            if(itr->random!=NULL)
+                itr->next->random=itr->random->next;
+            itr=itr->next->next;
+        }
+        
+    // STEP 3 : Pointing next pointers for deep copy
+        // we have to
+        Node* dummy = new Node(0);
+        Node* temp = dummy;
+        itr = head;
+        Node* fast;
+        while(itr != NULL) {
+            fast = itr->next->next;
+            temp->next = itr->next;
+            itr->next = fast;
+            temp = temp->next;
+            itr = fast;
+        }
+        return dummy->next;
+        
+        
+        
+
+        // Approach 1: HASMAP TC: O(N)+O(N)  SC:O(N)
+        
+//         map<Node*, Node*> m;
+        
+//         Node* itr = head;
+        
+//         // in the map make key as the curr node and its copy as the value.
+//         // ONLY COPY THE val not the two pointers
+//         while (itr) {
             
-            m[itr]->next = m[itr->next];
-            m[itr]->random = m[itr->random];
-            itr=itr->next;
-       }
-        return m[head];
+//            m[itr] =new Node(itr->val);  //key = itr and value = new Node(itr->val)
+           
+//            itr = itr->next;
+//         }
+//         // Keeping itr back to start(head)
+//         itr = head;
+        
+//         // iterate and then assign pointers to the copy by using map
+//         while (itr!=NULL) {
+            
+//             m[itr]->next = m[itr->next];
+//             m[itr]->random = m[itr->random];
+//             itr=itr->next;
+//        }
+//         return m[head];
 
         
     }

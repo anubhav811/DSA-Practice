@@ -11,38 +11,45 @@
 class Solution {
 public:
     ListNode* rotateRight(ListNode* head, int k) {
-        if (!head || k == 0 || !head->next) return head;
         
-        /* retrieve length of linked list */
+        if(head==NULL || k==0 || head->next==NULL) return head;
+                                                  
+        // find length of linked list
         int len = 1;
-        ListNode* tail = head;
+        ListNode* itr  = head;
         
-        for (ListNode* curr=head; curr->next != nullptr; curr=curr->next)
+        
+        while(itr->next != NULL)
         {
+            itr=itr->next;
             len++;
-            tail = tail->next;
         }
         
-        k %= len;
+        // now at this point itr is at the last node , now we will point the last nde            to the head of the linked list
         
-        if (k == 0) return head; /* no rotation */
+        itr->next=head;
         
-        int newhead = len - k;
+        // if k is greater than k , we will get the required no of rotation
+        k = k%len;
         
+        // the distance we have to travel to reach the breaking point   
+        int bp = len - k;
+          
         
-        ListNode *prev = head, *p1 = head;
+        // reaching the BP
+        while(bp--){
+            itr=itr->next;
+            }
         
-        for (int i = 0; i < newhead - 1; ++i)
-        {
-            prev = prev->next; p1 = p1->next;    
-        }
+        // now itr has reached the breaking point 
         
-        p1 = p1->next;
+        // head of the modified list will be kept at the node after BP
+        // and the BP will be pointed now to NULL
         
-        /* redirect */
-        tail->next = head;
-        prev->next = nullptr;
+        head=itr->next;
+        itr->next=NULL;
         
-        return p1; /* new head */
-  }
+        return head;
+       
+    }
 };

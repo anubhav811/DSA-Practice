@@ -28,25 +28,61 @@ public:
 //         solveRecur(root,main);
 //         return main;
         
-        // Iterative Solution
+        // Iterative Solution using two stacks
+        
+        // vector<int> postorder;
+        // if(root==NULL) return postorder;
+        // stack<TreeNode*> s1,s2;
+        // s1.push(root);
+        // while(!s1.empty()){
+        //     root = s1.top();
+        //     s1.pop();
+        //     s2.push(root);
+        //     if(root->left != NULL)
+        //         s1.push(root->left);
+        //     if(root->right != NULL)
+        //         s1.push(root->right);
+        // }
+        // while(!s2.empty())
+        // {
+        //     postorder.push_back(s2.top()->val);
+        //     s2.pop();
+        // }
+        // return postorder;
+        
+    
+        // Iterative Solution using one stack
+
+    
         vector<int> postorder;
         if(root==NULL) return postorder;
-        stack<TreeNode*> s1,s2;
-        s1.push(root);
-        while(!s1.empty()){
-            root = s1.top();
-            s1.pop();
-            s2.push(root);
-            if(root->left != NULL)
-                s1.push(root->left);
-            if(root->right != NULL)
-                s1.push(root->right);
-        }
-        while(!s2.empty())
-        {
-            postorder.push_back(s2.top()->val);
-            s2.pop();
-        }
+        stack<TreeNode*> s;
+        
+        while(root!=NULL || !s.empty()){
+            if(root!=NULL){
+                s.push(root);
+                root = root->left;
+            }
+            else{
+                TreeNode* temp  = s.top()->right;
+                if(temp==NULL)
+                {
+                    temp = s.top();
+                    s.pop();
+                    postorder.push_back(temp->val);
+                    
+                    while(!s.empty() && temp==s.top()->right){
+                        temp=s.top();
+                        s.pop();
+                        postorder.push_back(temp->val);
+                    }
+                }
+                else
+                    root = temp;
+                }
+            }
+        
         return postorder;
+
     }
 };

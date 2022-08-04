@@ -24,12 +24,13 @@ public:
     vector<int> postorderTraversal(TreeNode* root) {
         
         // For recursive part
-        vector<int> main;
-        solveRecur(root,main);
-        return main;
+//         vector<int> main;
+//         solveRecur(root,main);
+//         return main;
         
         // Iterative Solution
         vector<int> postorder;
+        if(root==NULL) return postorder;
         stack<TreeNode*> s1,s2;
         s1.push(root);
         while(!s1.empty()){
@@ -39,7 +40,7 @@ public:
             if(root->left != NULL)
                 s1.push(root->left);
             if(root->right != NULL)
-                s2.push(root->right);
+                s1.push(root->right);
         }
         while(!s2.empty())
         {

@@ -11,7 +11,8 @@ public:
             mp[arr[i]]=1;
             for(int j=0;j<i;j++){
                 if (arr[i] % arr[j] == 0)
-                    mp[arr[i]] = (mp[arr[i]] + mp[arr[j]] * mp[arr[i] / arr[j]]) % MOD;
+                    mp[arr[i]] = (mp[arr[i]] + mp[arr[j]] * mp[arr[i] /
+                                                               arr[j]]) % MOD;
             }
             
             ans = (ans+mp[arr[i]]) % MOD;

@@ -3,7 +3,7 @@ public:
     int numFactoredBinaryTrees(vector<int>& arr) {
         
         sort(arr.begin(),arr.end());
-        map<int,long> mp;
+        unordered_map<int,long> mp;
         long MOD = pow(10, 9) + 7;
         long ans;
         

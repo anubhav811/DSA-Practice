@@ -21,7 +21,7 @@ public:
             TreeNode* nodeInFront =  frontItem.first;
             int vertical = frontItem.second.first ;// vertical
             int level = frontItem.second.second;
-            nodes[vertical][level].insert(nodeInFront->val); // inserting node                                                                  value in                                                                            multiset
+            nodes[vertical][level].insert(nodeInFront->val); // inserting node                                                                 value in                                                                            multiset
             if(nodeInFront->left!=NULL){
                 q.push({nodeInFront->left,{vertical-1,level+1}});
             }

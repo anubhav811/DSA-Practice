@@ -16,8 +16,7 @@ public:
         if(l>r)
             return NULL;
         int middle = l + (r - l)/2;
-        TreeNode* root = new TreeNode();
-        root->val = nums[middle];
+        TreeNode* root = new TreeNode(nums[middle]);
         root->left = getNode(nums,l,middle-1);
         root->right = getNode(nums,middle+1,r);
         return root;

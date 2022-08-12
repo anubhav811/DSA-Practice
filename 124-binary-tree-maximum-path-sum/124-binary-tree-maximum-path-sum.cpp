@@ -11,12 +11,11 @@
  */
 class Solution {
 public:
-    int maxi = INT_MIN;
-    int solveRecur(TreeNode* root){
+    int solveRecur(TreeNode* root, int &maxi){
         if(root==NULL) return  0 ;
         
-        int max_l = max(0,solveRecur(root->left));
-        int max_r = max(0,solveRecur(root->right));
+        int max_l = max(0,solveRecur(root->left,maxi));
+        int max_r = max(0,solveRecur(root->right,maxi));
         // why taking max with return value and zero?
         // -> because the function might return a negative value and there is not point of adding it to the maxi variable because a negative value would never give a "max" sum
         
@@ -24,7 +23,8 @@ public:
         return max(max_l,max_r)+root->val;
     }
     int maxPathSum(TreeNode* root) {
-        solveRecur(root);
+        int maxi=INT_MIN;
+        solveRecur(root,maxi);
         return maxi;
     }
 };

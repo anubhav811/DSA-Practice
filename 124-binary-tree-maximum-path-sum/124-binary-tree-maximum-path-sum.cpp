@@ -16,6 +16,7 @@ public:
         
         int max_l = max(0,solveRecur(root->left,maxi));
         int max_r = max(0,solveRecur(root->right,maxi));
+      
         // why taking max with return value and zero?
         // -> because the function might return a negative value and there is not point of adding it to the maxi variable because a negative value would never give a "max" sum
         

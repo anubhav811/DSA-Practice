@@ -21,7 +21,7 @@ public:
 
 class Solution {
 public:
-    map<Node*,Node*> mp;
+    unordered_map<Node*,Node*> mp;
     Node* solveRecur(Node* node){
         if(mp.find(node)!=mp.end())
             return mp[node];

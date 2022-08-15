@@ -17,7 +17,7 @@ public:
     int add(int val) {
         nums.push_back(val);
         minh.push(val);
-        if(minh.size()>k){
+        while(minh.size()>k){
             minh.pop();
         }
         return minh.top();

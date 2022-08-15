@@ -1,7 +1,7 @@
 class Solution {
 public:
     int minMovesToMakePalindrome(string s) {
-      int n = s.length();
+    int n = s.length();
        
     int left = 0, right = s.size() - 1, ans = 0;
     while (left < right) {

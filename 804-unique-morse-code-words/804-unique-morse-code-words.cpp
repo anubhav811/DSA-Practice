@@ -4,7 +4,7 @@ public:
         vector<string> morse = {".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."};
         
         
-        set<string> res;
+        unordered_set<string> res;
         
         for(auto word : words){
             string curr="";
@@ -13,7 +13,6 @@ public:
             }
             res.insert(curr);
         }
-    
         return res.size();
     }
 };

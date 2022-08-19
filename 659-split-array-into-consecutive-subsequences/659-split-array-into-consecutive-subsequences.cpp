@@ -11,16 +11,17 @@ public:
         for(auto it: nums)
         {
             if(!availability[it]) continue;
-            availability[it]--;
             
-            if(want[it-1]>0){
-                want[it-1]--;
-                want[it]++;
+            if(want[it]>0){
+                availability[it]--;
+                want[it]--;
+                want[it+1]++;
             }
-            else if(availability[it+1] && availability[it+2]){
+            else if( availability[it] && availability[it+1] && availability[it+2]){
+                availability[it]--;
                 availability[it+1]--;
                 availability[it+2]--;
-                want[it+2]++;
+                want[it+3]++;
             }
             else return false;
         }

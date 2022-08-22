@@ -1,7 +1,7 @@
 class LRUCache {
 public:
     
-    // doubly linked list
+    // doubly linked list 
     class Node{
         public:
         int key;
@@ -9,12 +9,12 @@ public:
         Node *next;
         Node *prev;
         Node(int _key,int _val){
-            key = _key;
-            val = _val;
+            this->key = _key;
+            this->val = _val;
         }
     };
     // capacity
-    int cap ; 
+    int cap; 
     
     // for storing key and node address
     map<int,Node*> mp ;
@@ -22,12 +22,13 @@ public:
     // Making nodes for head and tail
     
     Node* head= new Node(-1,-1);
+    
     Node* tail= new Node(-1,-1);
 
     LRUCache(int capacity) {
         cap = capacity ;
         head->next = tail;
-        tail->next = head;   
+        tail->prev = head;   
     }
     
     void addNode(Node* newNode){
@@ -44,14 +45,15 @@ public:
         delprev->next = delnext;
         delnext->prev = delprev;
     }
+    
     int get(int key) {
         if(mp.find(key)!=mp.end()){
             Node* resNode = mp[key];
             int res = resNode->val;
-            // mp.erase(key);
+            mp.erase(key);
             deleteNode(resNode);
             addNode(resNode);
-            // mp[key] = head->next;
+            mp[key] = head->next;
             return res;
         }
         return -1;

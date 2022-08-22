@@ -6,6 +6,7 @@ public:
         int ans = -1;
         while(l<=r){
             int m = (l+r)/2;
+            
             if(nums[m]>target){
                 r=m-1;
             }

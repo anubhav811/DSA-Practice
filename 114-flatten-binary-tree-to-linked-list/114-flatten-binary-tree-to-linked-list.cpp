@@ -16,25 +16,25 @@ public:
 //  tC: O(n) 
 //  Sc: O(1)
     
-    void flatten(TreeNode* root){
-        TreeNode* cur = root;
-		while (cur)
-		{
-			if(cur->left)
-			{
-				TreeNode* pre = cur->left;
-				while(pre->right)
-				{
-					pre = pre->right;
-				}
-				pre->right = cur->right;
-				cur->right = cur->left;
-				cur->left = NULL;
-			}
-			cur = cur->right;
-		}
+//     void flatten(TreeNode* root){
+//         TreeNode* cur = root;
+// 		while (cur)
+// 		{
+// 			if(cur->left)
+// 			{
+// 				TreeNode* pre = cur->left;
+// 				while(pre->right)
+// 				{
+// 					pre = pre->right;
+// 				}
+// 				pre->right = cur->right;
+// 				cur->right = cur->left;
+// 				cur->left = NULL;
+// 			}
+// 			cur = cur->right;
+// 		}
     
-    }
+//     }
     
     // Recursion
 //  tC: O(n) 
@@ -58,22 +58,22 @@ public:
 //  tC: O(n) 
 //  Sc: O(n
     
-    // void flatten(TreeNode* root) {
+    void flatten(TreeNode* root) {
 
-    // stack<TreeNode*> s;
-    // if(!root)
-    //     return;
-    // s.push(root);
-    // while(!s.empty()){
-    //     TreeNode* curr = s.top();
-    //     s.pop();
-    //     if(curr->right)
-    //         s.push(curr->right);
-    //     if(curr->left)
-    //         s.push(curr->left);
-    //     if(!s.empty())
-    //         curr->right = s.top();
-    //     curr->left=NULL;
-    // }
-    // }
+    stack<TreeNode*> s;
+    if(!root)
+        return;
+    s.push(root);
+    while(!s.empty()){
+        TreeNode* curr = s.top();
+        s.pop();
+        if(curr->right)
+            s.push(curr->right);
+        if(curr->left)
+            s.push(curr->left);
+        if(!s.empty())
+            curr->right = s.top();
+        curr->left=NULL;
+    }
+    }
 };

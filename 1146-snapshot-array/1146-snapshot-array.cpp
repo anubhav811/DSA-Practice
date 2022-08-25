@@ -1,6 +1,6 @@
 class SnapshotArray {
 public:
-       vector<map<int,int>>A;
+    vector<map<int,int>>A;
     int s_id = 0;
     SnapshotArray(int length) {
         A.resize(length);

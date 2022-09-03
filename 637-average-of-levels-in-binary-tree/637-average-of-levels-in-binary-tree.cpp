@@ -30,7 +30,7 @@ public:
                 levelSum += child->val;
             }
             
-            res.push_back(levelSum/n);
+            res.push_back((double)levelSum/n);
             
         }
         return res;

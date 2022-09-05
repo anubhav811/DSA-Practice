@@ -27,24 +27,25 @@ public:
         vector<vector<int>> ans;
         
         if(!root) return ans;
+        
         q.push(root);
         q.push(NULL);
         
-        vector<int> curr_vec;
+        vector<int> curr;
+        
         while(!q.empty()){
             Node* top = q.front();
             q.pop();
             
             if(!top){
-                ans.push_back(curr_vec);
-                curr_vec.resize(0);
+                ans.push_back(curr);
+                curr.clear();
                  if (q.size() > 0) {
                     q.push(NULL);
                 }
-                
             }
             else{
-                curr_vec.push_back(top->val);
+                curr.push_back(top->val);
                 if(top->children.size()){
                     for(auto it : top->children){
                         if(it)

@@ -28,31 +28,24 @@ public:
         
         if(!root) return ans;
         
-        q.push(root);
-        q.push(NULL);
-        
-        vector<int> curr;
+        q.push(root);        
         
         while(!q.empty()){
-            Node* top = q.front();
-            q.pop();
+         
+            int size = q.size();
+            vector<int> curr;
             
-            if(!top){
-                ans.push_back(curr);
-                curr.clear();
-                 if (q.size() > 0) {
-                    q.push(NULL);
+            for(int i=0;i<size;i++){
+                Node* top = q.front();
+                q.pop();
+            
+                for(int j=0;j<top->children.size();j++){
+                    if(top->children[j])
+                        q.push(top->children[j]);
                 }
-            }
-            else{
                 curr.push_back(top->val);
-                if(top->children.size()){
-                    for(auto it : top->children){
-                        if(it)
-                            q.push(it);
-                    }
-                }
             }
+            ans.push_back(curr);
         }
         return ans;
     }

@@ -11,10 +11,7 @@
  */
 class Solution {
 public:
-    
-    
     // Recursive solution
-
     void solveRecur(TreeNode* root , vector<int> &main){
         if(root==NULL)
             return;
@@ -38,7 +35,7 @@ public:
         // while(root || !st.empty()){
         //     if(root!=NULL){
         //         st.push(root);
-        //         root=root->left;
+        //         root=root->l eft;
         //     }
         //     else{
         //         root = st.top();
@@ -81,6 +78,8 @@ public:
                     prev->right = NULL;
                     // now the node is itself the root , so it will be taken
                     inorder.push_back(curr->val);
+                    
+                    // and then to continue the cycle point towards right
                     curr=curr->right;
                 }
                 

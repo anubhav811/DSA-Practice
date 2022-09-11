@@ -1,6 +1,5 @@
 class Solution {
 public:        
-    typedef pair<int,int> pi;
     int maxPerformance(int n, vector<int>& speed, vector<int>& efficiency, int k) {
         
         vector<pair<int,int>> engineers(n);
@@ -11,15 +10,15 @@ public:
         
         sort(engineers.rbegin(),engineers.rend());
         
-        priority_queue <pi, vector<pi>, greater<pi>> pq;
+        priority_queue <int, vector<int>, greater<int>> pq;
             
         long sumSpeed = 0;
         long perf = 0;
         for(auto& [e,s] : engineers){
-            pq.push({s,e});
+            pq.push(s);
             sumSpeed+=s;
             if(pq.size()>k){
-                sumSpeed-=pq.top().first;
+                sumSpeed-=pq.top();
                 pq.pop();
             }
             perf = max(perf,sumSpeed*e);

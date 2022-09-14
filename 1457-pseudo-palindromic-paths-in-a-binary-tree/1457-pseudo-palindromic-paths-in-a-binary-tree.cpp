@@ -24,6 +24,8 @@ public:
             for(auto it:mp) {
                 if(it.second%2!=0) 
                     oddCount++;
+                if(oddCount>1) 
+                    break;
             }
             if(oddCount<=1) res++;
         }

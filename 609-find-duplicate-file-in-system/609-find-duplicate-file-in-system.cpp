@@ -17,6 +17,7 @@ public:
         
         
         for(auto it : paths){
+            
             vector<string> s ;
             removeDupWord(it,s);
             vector<string> files(s.size(),"");
@@ -27,20 +28,14 @@ public:
             for(int i=1 ;i<files.size();i++){
                 
                 string t = files[i];
-                
-                cout<<t<<endl;
-                
+                                
                 unsigned first = t.find("(");
                 unsigned last = t.find_last_of(")");
                 string content = t.substr (first+1,last-first-1);
                 
-                cout<<content<<endl;
-                
                 unsigned last2 = t.find("(");
                 string fileName = t.substr (0,last2);
                 
-                                cout<<fileName<<endl;
-
                 mp[content].insert(mainRoot+"/"+fileName);
             }
         }

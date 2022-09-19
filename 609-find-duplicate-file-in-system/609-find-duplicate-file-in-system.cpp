@@ -13,7 +13,7 @@ public:
     vector<vector<string>> findDuplicate(vector<string>& paths) {
         
         vector<vector<string>> res;
-        map<string,set<string>> mp;
+        unordered_map<string,set<string>> mp;
         
         
         for(auto it : paths){

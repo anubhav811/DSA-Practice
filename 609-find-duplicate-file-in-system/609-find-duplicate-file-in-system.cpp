@@ -1,6 +1,6 @@
 class Solution {
 public:
-    void removeDupWord(string str,vector<string> &s)
+    void makeStringVector(string str,vector<string> &s)
     {
     istringstream ss(str);
  
@@ -18,8 +18,9 @@ public:
         
         for(auto it : paths){
             
+            
             vector<string> s ;
-            removeDupWord(it,s);
+            makeStringVector(it,s);
             vector<string> files(s.size(),"");
             copy(s.begin(),s.end(),files.begin());
             
@@ -39,7 +40,6 @@ public:
                 mp[content].insert(mainRoot+"/"+fileName);
             }
         }
-        
         for(auto it: mp){
             vector<string> paths(it.second.begin(),it.second.end());
             if(paths.size()>1)

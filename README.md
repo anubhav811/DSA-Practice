@@ -4,4 +4,4 @@
 
 ### 1. Striver/take U forward ([Youtube](https://www.youtube.com/c/takeUforward))
 ### 2. Striver's SDE Sheet ([Link]())
-### 3. Aditya Verma's channel ([Youtube](https://www.youtube.com/c/AdityaVermaTheProgrammingLord))
+### 3. Aditya Verma's ([Youtube](https://www.youtube.com/c/AdityaVermaTheProgrammingLord))

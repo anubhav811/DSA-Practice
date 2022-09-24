@@ -1,25 +1,29 @@
 class Solution {
 public:
-    int findLength(vector<int>& A, vector<int>& B) {
-         if (A.size() < B.size()) swap(A, B);
-        int M = A.size(), N = B.size();
-        vector<int> dp(N + 1, 0);
-        int ans = 0;
-        
-        for(int i = 0; i < M; i++) {
-            for(int j = N - 1; j >= 0; j--) {
-                
-                if (A[i] == B[j]) {
-                    dp[j + 1] = 1 + dp[j];
-                } else {
-                    dp[j + 1] = 0;
+    int findLength(vector<int>& nums1, vector<int>& nums2) {
+        int n = nums1.size();
+        int maxi =0;
+        vector<int> dp(n,0);
+        for(auto num:nums2)
+        {
+            for (int i=n-1; i>0; i--)
+            {
+                if (nums1[i]!= num)
+                    dp[i] = 0;
+                else
+                {
+                    dp[i] = dp[i-1]+1;
+                    if(dp[i]>maxi) maxi = dp[i];
                 }
-                              
-                ans = max(ans, dp[j + 1]);
             }
-            
+            if (num == nums1[0])
+            {
+                dp[0] = 1;
+                if(maxi == 0) maxi = 1;
+            }
+            else  dp[0] = 0;
         }
-        
-        return ans;
+       return maxi; 
+    
     }
 };

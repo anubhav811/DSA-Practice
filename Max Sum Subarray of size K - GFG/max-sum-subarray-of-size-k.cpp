@@ -9,6 +9,7 @@ public:
         int l=0;
         int r=0;
         
+        
         long sum = 0;
         long currSum = 0 ;
         while(r<N){
@@ -24,6 +25,17 @@ public:
             }
         }
         return sum;
+        
+        // TLE - BRUTE FORCE
+        
+        // for(int i=0;i<N-K+1;i++){
+        //     long cursum = 0;
+        //     for(int j=i;j<i+K;j++){
+        //         cursum+=Arr[j];
+        //     }
+        //     sum = max(cursum,sum);
+        // }
+        // return sum;
     }
 };
 

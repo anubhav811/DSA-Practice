@@ -11,6 +11,7 @@ public:
             if(mp.size()>j-i+1){
                 j++;
             }
+            // the above if loop will never run because map size can at max be equal to window size but not greater than it . Still written to follow the template 
             else if(mp.size()==j-i+1){
                 ans = max(ans,j-i+1);
                 j++;

@@ -8,15 +8,7 @@ public:
 
         while(j<s.length()){
             mp[s[j]]++;
-            if(mp.size()>j-i+1){
-                j++;
-            }
-            // the above if loop will never run because map size can at max be equal to window size but not greater than it . Still written to follow the template 
-            else if(mp.size()==j-i+1){
-                ans = max(ans,j-i+1);
-                j++;
-            }
-            else if (mp.size()<j-i+1){
+            if(mp.size()<j-i+1){
                 while(mp.size()<j-i+1)
                 {
                     mp[s[i]]--;
@@ -25,8 +17,17 @@ public:
                         mp.erase(s[i]);
                     i++;
                 }
+                j++;            
+            }
+           
+            else if(mp.size()==j-i+1){
+                ans = max(ans,j-i+1);
                 j++;
             }
+//             else if (mp.size()<j-i+1){
+                
+//             }
+             // the above if loop will never run because map size can at max be equal to window size but not greater than it . Still written to follow the template 
         }
         return ans;
     }

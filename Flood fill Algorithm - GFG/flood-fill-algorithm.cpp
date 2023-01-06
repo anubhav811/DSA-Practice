@@ -7,27 +7,28 @@ class Solution {
 public:
     
     void dfs(vector<vector<int>>& image ,vector<vector<int>> vis, int row , int col ,int pattern, int newColor){
-                int n = image.size();
-        int m = image[0].size();
-
-        vis[row][col] = 1 ;
-        image[row][col] = newColor;
-        for(int delrow = -1 ; delrow<=1;delrow++){
-            for(int delcol=-1;delcol<=1;delcol++){
-                if((delcol==-1 && delrow==1) || (delcol==1 && delrow==-1) || delrow==delcol){
-                        continue;
+            int n = image.size();
+            int m = image[0].size();
+    
+            vis[row][col] = 1 ;
+            image[row][col] = newColor;
+            for(int delrow = -1 ; delrow<=1;delrow++){
+                for(int delcol=-1;delcol<=1;delcol++){
+                    if((delcol==-1 && delrow==1) || (delcol==1 && delrow==-1) || delrow==delcol){
+                            continue;
+                        }
+                    int x = row+delrow;
+                    int y = col+delcol;
+                        
+                    if(x<n && x>=0 && y<m && y>=0 && image[x][y]==pattern && !vis[x][y]){
+                        vis[x][y]=1;
+                        image[x][y]=newColor;
+                        dfs(image,vis,x,y,pattern,newColor);
                     }
-                int x = row+delrow;
-                int y = col+delcol;
-                    
-                if(x<n && x>=0 && y<m && y>=0 && image[x][y]==pattern && !vis[x][y]){
-                    vis[x][y]=1;
-                    image[x][y]=newColor;
-                    dfs(image,vis,x,y,pattern,newColor);
                 }
             }
         }
-    }
+    
     void bfs(vector<vector<int>>& image ,vector<vector<int>> vis, int row , int col ,int pattern, int newColor){
         vis[row][col] = 1 ;
         image[row][col] = newColor;
@@ -61,6 +62,8 @@ public:
             }
         }
     }
+    
+    
     vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int newColor) {
         
         int pattern = image[sr][sc];
@@ -69,7 +72,10 @@ public:
         int m = image[0].size();
         vector<vector<int>> vis(n,vector<int>(m,0));
         
+        // Approach 1: BFS
         // bfs(image,vis,sr,sc,pattern,newColor);
+        
+        // Approach 2 : Dfs 
         dfs(image,vis,sr,sc,pattern,newColor);
     
         return image;

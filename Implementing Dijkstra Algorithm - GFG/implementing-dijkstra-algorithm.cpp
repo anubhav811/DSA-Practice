@@ -8,8 +8,8 @@ class Solution
 	public:
     // USING SET
     
-      vector <int> dijkstra(int V, vector<vector<int>> adj[], int S)
-      {
+    vector <int> dijkstra(int V, vector<vector<int>> adj[], int S){
+        
         // set
         set<pair<int,int>> s;
         
@@ -34,8 +34,12 @@ class Solution
                 int edgeWt = it[1];
             
                 if(dist+edgeWt<disVec[adjNode]){
+                    if(disVec[adjNode]!=INT_MAX){
+                        s.erase({disVec[adjNode],adjNode});
+                    }
                     disVec[adjNode] = dist + edgeWt;
                     s.insert({disVec[adjNode],adjNode});
+
                 }
             }
         }

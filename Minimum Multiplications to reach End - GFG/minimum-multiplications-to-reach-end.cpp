@@ -20,6 +20,8 @@ class Solution {
         vector<int> dist(100000,INT_MAX);
         dist[start] = 0 ;
         
+        int MOD = 100000;
+        
         while(!pq.empty()){
             auto it = pq.front();
             int node = it.second;
@@ -28,7 +30,7 @@ class Solution {
             
          
             for(auto it:arr){
-                int prod = (it*node)%100000;
+                int prod = (it*node)%MOD;
                 if(steps+1<dist[prod]){
                     dist[prod] = steps+1;
                     if(prod==end)

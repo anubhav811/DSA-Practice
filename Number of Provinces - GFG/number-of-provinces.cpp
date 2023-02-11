@@ -98,8 +98,13 @@ class Solution {
             }
         }
         int cnt = 0;
-        for(int i=0;i<v;i++){
-            if(ds.parent[i]==i){
+        for(int i=0;i<v;i++){/*          
+        
+            if(ds.parent[i]==i){     This would only work when parent array is declared under the public 
+                                        scope of DisjointSet Class
+                OR  
+*/
+            if(ds.findUltimateParent(i)==i){
                 cnt++;
             }
         }

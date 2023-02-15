@@ -8,7 +8,7 @@ public:
     int wordLadderLength(string startWord, string targetWord, vector<string>& wordList) {
         // Code here
         
-        set<string> s(wordList.begin(),wordList.end());
+        unordered_set<string> s(wordList.begin(),wordList.end());
         
         queue<pair<string,int>> q;
         

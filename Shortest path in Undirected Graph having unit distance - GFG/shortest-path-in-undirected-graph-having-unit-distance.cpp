@@ -8,17 +8,18 @@ using namespace std;
 // User function Template for C++
 class Solution {
   public:
-  void dfs(int node,vector<int> &vis,vector<int> adj[],vector<int> &dist){
-         vis[node]=1;
-         for(auto it:adj[node]){
-            if(dist[it]>dist[node]+1)
-                dist[it] = dist[node]+1;
+    // void dfs(int node,vector<int> &vis,vector<int> adj[],vector<int> &dist){
+    //      vis[node]=1;
+    //      for(auto it:adj[node]){
+    //         if(dist[it]>dist[node]+1)
+    //             dist[it] = dist[node]+1;
 
-            if(!vis[it])
-                dfs(it,vis,adj,dist);
-         }
-         vis[node]=0;
-     }
+    //         if(!vis[it])
+    //             dfs(it,vis,adj,dist);
+    //      }
+    //      vis[node]=0;
+    //  }
+     
     vector<int> shortestPath(vector<vector<int>>& edges, int N,int M, int src){
         
         vector<int> adj[N];
@@ -36,14 +37,50 @@ class Solution {
         vector<int> dist (N,INT_MAX);
         dist[src]=0;
         
-        dfs(src,vis,adj,dist);
+        // DFS Method
+        // dfs(src,vis,adj,dist);
         
-        for(int i=0;i<N;i++){
-            if(dist[i]==INT_MAX){
-                dist[i]=-1;
+        
+        // BFS Method
+        
+        queue<int> q;
+        q.push(src);
+        while(!q.empty()){
+            int node = q.front();
+            q.pop();
+            
+            for(auto it:adj[node]){
+                if(dist[it]>dist[node]+1){
+                    dist[it]  = dist[node]+1 ;
+                    q.push(it);
+                }
             }
         }
+        
+        for(int i=0;i<N;i++){
+            if(dist[i]==INT_MAX)
+                dist[i] = -1;
+        }
         return dist;
+        // queue<int> q;
+        // q.push(src); 
+        // while(!q.empty()) {
+        //     int node = q.front(); 
+        //     q.pop(); 
+        //     for(auto it : adj[node]) {
+        //         if(dist[node] + 1 < dist[it]) {
+        //             dist[it] = 1 + dist[node]; 
+        //             q.push(it); 
+        //         }
+        //     }
+        // }
+        
+        // for(int i=0;i<N;i++){
+        //     if(dist[i]==INT_MAX){
+        //         dist[i]=-1;
+        //     }
+        // }
+        // return dist;
         
     }
 };

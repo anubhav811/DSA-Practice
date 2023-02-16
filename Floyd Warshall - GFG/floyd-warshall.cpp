@@ -31,7 +31,11 @@ class Solution {
 	            }
 	        }
 	    }
-	    
+	    // check for negative cycle
+	    for(int i=0;i<n;i++){
+	        if(matrix[i][i]<0)
+	            cout<<"Negative Cycle";
+	    }
         for(int i=0;i<n;i++){
 	       for(int j=0;j<n;j++){
 	           if(matrix[i][j]==1e9){
@@ -39,6 +43,7 @@ class Solution {
 	           }
 	        }
         }
+        return ;
 	}
 };
 

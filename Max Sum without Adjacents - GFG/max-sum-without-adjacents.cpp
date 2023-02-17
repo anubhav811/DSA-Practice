@@ -6,6 +6,7 @@ using namespace std;
 
 // } Driver Code Ends
 //User function template for C++
+
 class Solution{
 public:	
 	// calculate the maximum sum with out adjacent
@@ -61,6 +62,27 @@ public:
 	    
 	    return dp[n-1];
 	}
+	
+	  int spaceOpt(int *arr, int n)
+    {
+        int prev = arr[0]; // this is zero
+        int prev2 = 0; 
+        for (int i = 1; i < n; i++)
+        {
+            int take = arr[i];
+            if (i > 1)
+                take += prev2;
+            int nottake = 0 + prev;
+
+            int curr = max(take, nottake);
+
+            prev2 = prev;
+            prev = curr;
+        }
+
+        return prev;
+    }
+
 	int findMaxSum(int *arr, int n) {
 	    // code here
 	    
@@ -75,10 +97,14 @@ public:
 	   
 	   // DP Tabulation 
 	   // array and size passed
-	   return tab(arr,n);
+	   //return tab(arr,n);
 	    
+       // Space Optimization
+       // array and size passed  TC -> O(N) AND SC -> O(1)
+       return spaceOpt(arr, n);
 	}
 };
+
 
 //{ Driver Code Starts.
 

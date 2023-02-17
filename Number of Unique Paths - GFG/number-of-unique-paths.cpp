@@ -38,6 +38,30 @@ class Solution
           return dp[i][j] = up+left;
 
     }
+    
+    int tab(int n , int m){
+        vector<vector<int>> dp(n,vector<int>(m,0));
+        
+        dp[0][0] = 1;
+        
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(i==0 && j==0){continue;}
+                
+                int up = 0;
+                int left = 0;
+                
+                if(i>0)
+                    up = dp[i-1][j];
+                
+                if(j>0)
+                    left = dp[i][j-1];
+                
+                dp[i][j] = up+left;
+            }
+        }
+        return dp[n-1][m-1];
+    }
     int NumberOfPath(int a, int b)
     {
         // Recursion TLE  TC = O(2^(m*n))
@@ -45,8 +69,11 @@ class Solution
         // return recur(a-1,b-1);    
         
         // Memo
-        vector<vector<int>> dp(a,vector<int>(b,-1));
-        return memo(a-1,b-1,dp);
+        // vector<vector<int>> dp(a,vector<int>(b,-1));
+        // return memo(a-1,b-1,dp);
+        
+        // Tab
+        return tab(a,b);
     }
 };
 

@@ -6,28 +6,44 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
   public:
-    int find(vector<int> & height , int i,vector<int> &dp){
-            
-        if(i==0){
+    int Memo(int i,vector<int> &heights , vector<int> &dp)
+    {
+        if(i == 0)
             return 0;
-        }
-        if(dp[i] != -1) 
+        
+        if(dp[i]!=-1)
             return dp[i];
             
-        int oneJump = find(height,i-1,dp) + abs(height[i]-height[i-1]);
-        int twoJump = INT_MAX;
-        if(i>1){
-            twoJump = find(height,i-2,dp) + abs(height[i]-height[i-2]);
-        }
-        return dp[i] = min(oneJump , twoJump); 
+        int one = abs(heights[i]-heights[i-1]) + Memo(i-1,heights,dp);
+        int two = INT_MAX;
+        if(i>1)
+            two = abs(heights[i]-heights[i-2]) + Memo(i-2,heights,dp);
+    
+        return dp[i] = min(one,two);
     }
+    int tabulation(int n,vector<int> &heights)
+    {
+        vector<int> dp(n+1,-1);
+        dp[0] = 0;
+    
+        for (int i = 1; i < n + 1; i++) {
+          int one = abs(heights[i] - heights[i - 1]) + dp[i - 1];
+          int two = INT_MAX;
+          if (i > 1)
+            two = abs(heights[i] - heights[i - 2]) + dp[i - 2];
+    
+          dp[i] = min(one, two);
+        }
+
+    return dp[n];
+}
     int minimumEnergy(vector<int>& height, int n) {
         // Code here
          
-         
-          vector<int>  dp(n+1,-1);
+        // vector<int>  dp(n+1,-1);
+        // return Memo(n-1,height,dp);
         
-            return find(height,n-1,dp);
+        return tabulation(n-1,height);
     }
 };
 

@@ -37,13 +37,32 @@ class Solution {
 
     return dp[n];
 }
+
+int spaceOpt(int n,vector<int> &heights){
+    int prev=  0;
+    int prev2 = 0;
+    for(int i=1;i<n+1;i++){
+        int one = prev + abs(heights[i]-heights[i-1]);
+        int two = INT_MAX;
+        if(i>1)
+            two  = prev2 + abs(heights[i]-heights[i-2]);
+
+        int curr = min(one,two);
+        prev2 = prev;
+        prev = curr;
+    }
+    return prev;
+}
+
     int minimumEnergy(vector<int>& height, int n) {
         // Code here
          
         // vector<int>  dp(n+1,-1);
         // return Memo(n-1,height,dp);
         
-        return tabulation(n-1,height);
+        // return tabulation(n-1,height);
+        
+        return spaceOpt(n-1,height);
     }
 };
 

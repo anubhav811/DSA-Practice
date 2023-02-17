@@ -48,29 +48,12 @@ class Solution
     }
     int FindMaxSum(int arr[], int n)
     {
-        vector<int> arr1;
-        vector<int> arr2;
         
-        if(n==1)
-           return arr[0];
-        
-        if(arr[0]!=arr[n-1]){
             vector<int> v;
             for(int i=0;i<n;i++){
                 v.push_back(arr[i]);
             }
             return spaceOpt(v);
-}
-for(int i=0; i<n; i++){
-            
-            if(i!=0) arr1.push_back(arr[i]);
-            if(i!=n-1) arr2.push_back(arr[i]);
-        }
-        
-        long long int ans1 = spaceOpt(arr1);
-        long long int ans2 = spaceOpt(arr2);
-        
-        return max(ans1,ans2);
 
     }
 };

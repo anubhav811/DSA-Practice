@@ -1,8 +1,7 @@
 class Solution {
 public:
     vector<vector<int>> merge(vector<vector<int>>& intervals) {
-        
-        vector<vector<int>> res ; 
+     vector<vector<int>> res ; 
         
         sort(intervals.begin(),intervals.end());
         vector<int> pair = intervals[0];
@@ -18,6 +17,6 @@ public:
             }
         }
         res.emplace_back(pair);
-        return res;
+        return res;   
     }
 };

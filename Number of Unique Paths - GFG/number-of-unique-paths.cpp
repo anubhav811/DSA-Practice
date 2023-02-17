@@ -64,6 +64,32 @@ class Solution
         }
         return dp[n-1][m-1];
     }
+    
+    int spaceOpt(int n,int m){
+    vector<int> prev(m,0);
+    for(int i=0; i<n; i++){
+        vector<int> temp(m,0);
+        for(int j=0; j<m; j++){
+            if(i==0 && j==0){
+                temp[j]=1;
+                continue;
+            }
+            
+            int up=0;
+            int left =0;
+            
+            if(i>0)
+                up = prev[j];
+            if(j>0)
+                left = temp[j-1];
+                
+            temp[j] = up + left;
+        }
+        prev = temp;
+    }
+    
+    return prev[m-1];
+    }
     int NumberOfPath(int a, int b)
     {
         // Recursion TLE  TC = O(2^(m*n))

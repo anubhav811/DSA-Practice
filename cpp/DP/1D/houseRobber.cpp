@@ -1,8 +1,7 @@
 class Solution
 {
 public:
-    // calculate the maximum sum with out adjacent
-    int recur(vector<int> &arr, int i)
+    int recur(int arr[], int i)
     {
 
         // if we are anyhow reaching i = 0 , it means index 1 was not picked (because we dont take adjacent)
@@ -23,7 +22,7 @@ public:
         return max(pick, notpick);
     }
 
-    int memo(vector<int> &arr, int i, vector<int> &dp)
+    int memo(int arr[], int i, vector<int> &dp)
     {
 
         if (i == 0)
@@ -42,9 +41,8 @@ public:
         return dp[i] = max(pick, notpick);
     }
 
-    int tab(vector<int> &arr)
+    int tab(int arr[], int n)
     {
-        int n = arr.size();
         vector<int> dp(n + 1, -1);
 
         dp[0] = arr[0];
@@ -82,25 +80,10 @@ public:
 
         return prev;
     }
-    int findMaxSum(vector<int> &arr, int n)
+
+    int FindMaxSum(vector<int> arr, int n)
     {
-        // code here
-
-        // Recursion TLE
-        // array and index passed
-        // return recur(arr,n-1);
-
-        // Memoization TLE
-        // array ,dp and index passed
-        // vector<int> dp(n+1,-1);
-        // return memo(arr,n-1,dp);
-
-        // DP Tabulation
-        // array and size passed  TC AND SC -> O(N)
-        // return tab(arr);
-
-        // Space Optimization
-        // array and size passed  TC -> O(N) AND SC -> O(1)
+        // Your code here
         return spaceOpt(arr);
     }
 };

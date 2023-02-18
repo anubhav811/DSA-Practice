@@ -10,14 +10,9 @@ class Solution {
         if(i==triangle.size()-1 ){
             return triangle[i][j];
         }
-        
 
-        int below=INT_MAX,belAdj = INT_MAX;
-        
-        if(i+1<triangle.size())
-            below = triangle[i][j] + recur(i+1,j,triangle);
-        if(i+1<triangle.size() && j+1<triangle[i].size())
-            belAdj = triangle[i][j] + recur(i+1,j+1,triangle);
+        int below = triangle[i][j] + recur(i+1,j,triangle);
+        int belAdj = triangle[i][j] + recur(i+1,j+1,triangle);
             
         return min(below,belAdj);
     }
@@ -30,13 +25,9 @@ class Solution {
         if(dp[i][j]!=-1)
             return dp[i][j];
             
-        int below=INT_MAX,belAdj = INT_MAX;
-        
-        if(i+1<triangle.size())
-            below = triangle[i][j] + recur(i+1,j,triangle);
-        if(i+1<triangle.size() && j+1<triangle[i].size())
-            belAdj = triangle[i][j] + recur(i+1,j+1,triangle);
-            
+        int below = triangle[i][j] + recur(i+1,j,triangle);
+        int belAdj = triangle[i][j] + recur(i+1,j+1,triangle);
+       
         return dp[i][j] = min(below,belAdj);
     }
     
@@ -54,11 +45,10 @@ class Solution {
         
         for(int i=n-2;i>=0;i--){
             for(int j=i;j>=0;j--){
-                      
                     int below = triangle[i][j] + dp[i+1][j];
                     int belAdj = triangle[i][j] + dp[i+1][j+1];
-                        
                     dp[i][j] = min(below,belAdj);
+                
             }
         }
     

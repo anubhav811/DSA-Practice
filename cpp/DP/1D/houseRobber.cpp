@@ -1,7 +1,7 @@
 class Solution
 {
 public:
-    int recur(int arr[], int i)
+    int recur(vector<int> arr, int i)
     {
 
         // if we are anyhow reaching i = 0 , it means index 1 was not picked (because we dont take adjacent)
@@ -22,7 +22,7 @@ public:
         return max(pick, notpick);
     }
 
-    int memo(int arr[], int i, vector<int> &dp)
+    int memo(vector<int> arr, int i, vector<int> &dp)
     {
 
         if (i == 0)
@@ -41,7 +41,7 @@ public:
         return dp[i] = max(pick, notpick);
     }
 
-    int tab(int arr[], int n)
+    int tab(vector<int> arr, int n)
     {
         vector<int> dp(n + 1, -1);
 
@@ -83,7 +83,24 @@ public:
 
     int FindMaxSum(vector<int> arr, int n)
     {
-        // Your code here
+        // Recursion TLE
+        // array and index passed
+        // return recur(arr,n-1);
+
+        // Memoization TLE                 TC : O(N)
+        //                                 SC : O(N)
+        // array ,dp and index passed
+        // vector<int> dp(n+1,-1);
+        // return memo(arr,n-1,dp);
+
+        // DP Tabulation                   TC : O(N)
+        //                                 SC : O(N)
+        // array and size passed
+        // return tab(arr);
+
+        // Space Optimization              TC -> O(N)
+        //                                 SC -> O(1)
+        // array and size passed
         return spaceOpt(arr);
     }
 };

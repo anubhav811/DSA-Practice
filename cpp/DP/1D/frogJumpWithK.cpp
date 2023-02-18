@@ -71,17 +71,19 @@ public:
     int minimizeCost(vector<int> &height, int n, int k)
     {
 
-        // 1.Recursion  -> TC = O(N*k)  SC = O(N) {recursion stack space}
+        // 1.Recursion  ->          TC = O(N*k)
+        //                          SC = O(N) {recursion stack space}
         // TLE
         // return recur(height,n-1,k);
 
-        // 2 . Memoization-> TC = O(N*k)  SC = O(2*N) = O(N) {recursion stack space, dp array}
+        // 2 . Memoization->        TC = O(N*k)
+        //                          SC = O(2*N) = O(N) {recursion stack space, dp array}
         // TLE
         // vector<int> dp(n+1,-1);
         // return memo(height,n-1,k,dp);
 
-        // 3 . Tabulation -> TC= O() SC = O()
-
+        // 3 . Tabulation ->        TC= O(N*K)
+        //                         SC = O(N)
         return tab(height, n, k);
     }
 };

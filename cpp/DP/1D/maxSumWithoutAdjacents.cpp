@@ -90,17 +90,20 @@ public:
         // array and index passed
         // return recur(arr,n-1);
 
-        // Memoization TLE
+        // Memoization TLE                 TC : O(N)
+        //                                 SC : O(N)
         // array ,dp and index passed
         // vector<int> dp(n+1,-1);
         // return memo(arr,n-1,dp);
 
-        // DP Tabulation
-        // array and size passed  TC AND SC -> O(N)
+        // DP Tabulation                   TC : O(N)
+        //                                 SC : O(N)
+        // array and size passed
         // return tab(arr);
 
-        // Space Optimization
-        // array and size passed  TC -> O(N) AND SC -> O(1)
+        // Space Optimization              TC -> O(N)
+        //                                 SC -> O(1)
+        // array and size passed
         return spaceOpt(arr);
     }
 };

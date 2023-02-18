@@ -5,6 +5,18 @@ private:
 
 public:
     // Function to count number of ways to reach the nth stair.
+    int memo(int n, vector<int> &dp)
+    {
+        if (dp[n] != -1)
+        {
+            return dp[n] % mod;
+        }
+
+        if (n <= 2)
+            return dp[n] = n % mod;
+
+        return dp[n] = (memo(n - 1, dp) % mod + memo(n - 2, dp) % mod) % mod;
+    }
     int tab(int n)
     {
         vector<int> dp(n + 1, -1);
@@ -21,29 +33,34 @@ public:
         return dp[n];
     }
 
-    int memo(int n, vector<int> &dp)
+    int spaceOpt(int n)
     {
-        if (dp[n] != -1)
+        int prev2 = 1;
+        int prev = 1;
+
+        for (int i = 2; i < n + 1; i++)
         {
-            return dp[n] % mod;
+            int cur_i = prev2 + prev;
+            prev2 = prev;
+            prev = cur_i;
         }
 
-        if (n <= 2)
-            return dp[n] = n % mod;
-
-        return dp[n] = (memo(n - 1, dp) % mod + memo(n - 2, dp) % mod) % mod;
+        return prev;
     }
-    
-    
-    
-    
+
     int countWays(int n)
     {
+        // Memoization
+        // vector<int> dp(n + 1, -1);
+        // return memo(n, dp) % mod;
 
-        vector<int> dp(n + 1, -1);
-        return memo(n, dp) % mod;
+        // Tab                  TC: O(N)
+        //                      SC: O(N)
+        // return tab(n) % mod;
 
-        return tab(n) % mod;
+        // Space Optimized      TC: O(N)
+        //                      SC: O(1)
+        return spaceOpt(n) % mod;
     }
 };
 

@@ -63,11 +63,17 @@ public:
     {
         // Code here
 
+        // Memoization                 TC: O(N)
+        //                             SC: O(N)
         // vector<int>  dp(n+1,-1);
         // return Memo(n-1,height,dp);
 
+        // Tabulation                  TC: O(N)
+        //                             SC: O(N
         // return tabulation(n-1,height);
 
+        // Space Optimized             TC: O(N)
+        //                             SC: O(1)
         return spaceOpt(n - 1, height);
     }
 };

@@ -75,6 +75,39 @@ class Solution {
         return dp[n - 1][m - 1]%mod;
     }
     
+    int spaceOpt(int n, int m, vector<vector<int>> grid)
+    {
+        vector<int> prev(m, 0);
+
+        for (int i = 0; i < n; i++)
+        {
+            vector<int> temp(m,0);
+            for (int j = 0; j < m; j++)
+            {
+                if (i == 0 && j == 0 && grid[i][j]==0){  
+                    temp[j] = 1;
+                    continue;
+                }
+                if(grid[i][j]==1){  
+                        temp[j]= 0;
+                        continue;
+                }
+                
+                int up = 0;
+                int left = 0;
+
+                if (i > 0)
+                    up = prev[j]%mod;
+
+                if (j > 0)
+                    left = temp[j - 1]%mod;
+               temp[j   ] = (up + left)%mod;
+            }
+            prev = temp;
+        }
+        return prev[m-1]%mod;
+    }
+    
     int totalWays(int n, int m, vector<vector<int>>& grid) {
 
         // Recursion TLE            TC : O(2^(m*n))
@@ -88,11 +121,11 @@ class Solution {
 
         // Tab                      TC : O(M*N)
         //                          SC : O(M*N)
-        return tab(n, m,grid);
+        // return tab(n, m,grid);
 
         // Space optimized          TC: O(M*N)
         //                          SC: O(N)
-        // return spaceOpt(a, b);
+        return spaceOpt(n, m,grid);
     }
     
 };

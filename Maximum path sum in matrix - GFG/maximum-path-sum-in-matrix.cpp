@@ -80,6 +80,46 @@ public:
         
         return maxi;
     }
+    
+    int spaceOpt(vector<vector<int>> grid){
+        int n = grid.size();
+        int m = grid[0].size();
+        
+        vector<int> prev(n);
+        vector<int> curr(n);
+        // Initializing first row - base condition
+        for(int j=0; j<m; j++){
+            prev[j] = grid[0][j];
+        }
+        
+        for(int i=1; i<n; i++){
+            vector<int> temp(n);
+            for(int j=0;j<m;j++){
+                
+                int up = grid[i][j] + prev[j];
+                
+                int leftDiagonal= grid[i][j];
+                if(j-1>=0) leftDiagonal += prev[j-1];
+                else leftDiagonal += -1e9;
+                
+                int rightDiagonal = grid[i][j];
+                if(j+1<m) rightDiagonal += prev[j+1];
+                else rightDiagonal += -1e9;
+                
+               curr[j] = max(up, max(leftDiagonal,rightDiagonal));
+
+            }
+            prev = curr;
+        }
+        
+        int maxi = INT_MIN;
+        
+        for(int j=0; j<m;j++){
+            maxi = max(maxi,prev[j]);
+        }
+        
+        return maxi;
+    }
 
     
     int maximumPath(int n, vector<vector<int>> Matrix)
@@ -90,13 +130,17 @@ public:
         //   maxi = max(maxi,recur(n-1,j,Matrix));
          // return maxi;
     
-        // vector<vector<int>> dp(n,vector<int>(n,-1));
+        // vector<vector<int>> dp(n,vector<int>(n,-1));         TC: O(N*M) SC: O(N) + O(N*M)   
         // int maxi = INT_MIN;
         // for(int j=0;j<Matrix.size();j++)
         //   maxi = max(maxi,memo(n-1,j,Matrix,dp));
         // return maxi;
+
+
+        // return tab(Matrix);                              TC:O(N*M)  SC: O(N*M)
         
-        return tab(Matrix);
+        
+        return spaceOpt(Matrix);
         
     }
 };

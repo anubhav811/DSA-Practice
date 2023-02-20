@@ -4,6 +4,7 @@ using namespace std;
 
 
 // } Driver Code Ends
+
 class Solution {
   public:
     int recur(int i,int j1,int j2,vector<vector<int>>& grid,int n,int m){
@@ -185,8 +186,8 @@ class Solution {
         //                        SC : O(N*M*M)
         // return tab(n,m,grid);
         
-        // Space Optimized
-        
+        // Space Optimized             TC : O(N*M*M)*9
+        //                        SC : O(M*M)        
         return spaceOpt(n,m,grid);
     }
 };

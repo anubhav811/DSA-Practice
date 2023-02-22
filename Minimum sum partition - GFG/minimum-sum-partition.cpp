@@ -6,8 +6,7 @@ using namespace std;
 class Solution{
 
   public:
-      bool spaceOpt(int N , int target, int arr[]){
-        vector<bool> prev(target+1,false);
+      bool spaceOpt(int N , int target, int arr[],vector<bool> &prev){
         vector<bool> curr(target+1,false);
         
         prev[0]=curr[0] = true;
@@ -113,22 +112,26 @@ class Solution{
         // }
           
         // Tabulation                       TC :O(N*totSum) +O(N) +O(N), SC : O(N*totSum)
-        vector<vector<bool>> dp (N,vector<bool>(totalSum+1,false));
-        bool bkchodi = tab(N,totalSum,arr,dp);
+        // vector<vector<bool>> dp (N,vector<bool>(totalSum+1,false));
+        // bool bkchodi = tab(N,totalSum,arr,dp);
         
-        for (int i = 0; i <= totalSum; i++) {
-            if (dp[N-1][i] == true) {
-              int diff = abs(i - (totalSum - i));
-              mini = min(mini, diff);
-            }
-        }
-        // // Space Optimizaton                TC :O(N*totSum) +O(N) +O(N), SC : O(N*totSum)
         // for (int i = 0; i <= totalSum; i++) {
-        //     if (recur(N-1,i,arr) == true) {
+        //     if (dp[N-1][i] == true) {
         //       int diff = abs(i - (totalSum - i));
         //       mini = min(mini, diff);
         //     }
-        // }        
+        // }
+        
+        // // Space Optimizaton                TC :O(N*totSum) +O(N) +O(N), SC : O(N*totSum)
+        vector<bool> prev(totalSum+1,false);
+        bool bkchodi = spaceOpt(N,totalSum,arr,prev);
+
+        for (int i = 0; i <= totalSum; i++) {
+            if (prev[i] == true) {
+              int diff = abs(i - (totalSum - i));
+              mini = min(mini, diff);
+            }
+        }        
         
         return mini;
 

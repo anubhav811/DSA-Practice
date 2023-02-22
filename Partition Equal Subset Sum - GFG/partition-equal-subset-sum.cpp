@@ -9,55 +9,80 @@ using namespace std;
 
 class Solution{
 public:
-    bool memo(int i,int sum , int arr[] , vector<vector<int>> &dp){
-        if(sum==0)
-            return true;
-        if(i==0)
-            return arr[0] == sum;
-         
-        if(dp[i][sum] != -1){
-            return dp[i][sum];
+    
+    bool tab(int N,int target , int arr[]){
+        
+        vector<vector<bool>> dp(N,vector<bool>(target+1,false));
+        
+        for(int i=0;i<N;i++)
+            dp[i][0] = true;
+        
+        
+        dp[0][0] = true;
+        
+        for(int i=1;i<N;i++){
+            for(int j=1;j<target+1;j++)
+            {
+                bool pick = (arr[i]<=j) ?  dp[i-1][j-arr[i]] : false;
+                bool notPick = dp[i-1][j];
+                
+                dp[i][j] = pick || notPick;
+            }
         }
         
-        bool pick = (arr[i]<=sum) ? memo(i-1,sum-arr[i],arr,dp) : false;
-        bool notPick = memo(i-1,sum,arr,dp);
+        return dp[N-1][target] ;
         
-        return dp[i][sum] = pick||notPick;
+        
     }
-    bool recur(int i , int sum, int arr[]){
-        
-        if(sum==0)
+    bool memo(int i,int target , int arr[] , vector<vector<int>> &dp){
+        if(target==0)
             return true;
         if(i==0)
-            return arr[i]==sum;
+            return arr[0] == target;
+         
+        if(dp[i][target] != -1){
+            return dp[i][target];
+        }
         
-        bool pick = (arr[i]<=sum) ? recur(i-1,sum-arr[i],arr) : false;
-        bool notpick = recur(i-1,sum,arr);
+        bool pick = (arr[i]<=target) ? memo(i-1,target-arr[i],arr,dp) : false;
+        bool notPick = memo(i-1,target,arr,dp);
+        
+        return dp[i][target] = pick||notPick;
+    }
+    bool recur(int i , int target, int arr[]){
+        
+        if(target==0)
+            return true;
+        if(i==0)
+            return arr[i]==target;
+        
+        bool pick = (arr[i]<=target) ? recur(i-1,target-arr[i],arr) : false;
+        bool notpick = recur(i-1,target,arr);
         
         return pick||notpick;
         
     }
     int equalPartition(int N, int arr[])
     {
-        int sum = 0;
+        int target = 0;
         for(int i=0;i<N;i++){
-            sum+=arr[i];
+            target+=arr[i];
         }
         
-        if(sum%2==0){
+        if(target%2==0){
             
             // Recursion                        TC : O(2^N), SC : O(N)
-            // return recur(N-1,sum/2,arr);
+            // return recur(N-1,target/2,arr);
     
             // Memoization                      TC : O(N*target/2), SC : O(N*target/2) + O(N)
-            vector<vector<int>> dp (N,vector<int>(sum+1,-1));
-            return memo(N-1,sum/2,arr,dp);
+            // vector<vector<int>> dp (N,vector<int>(target+1,-1));
+            // return memo(N-1,target/2,arr,dp);
     
             // Tabulation                       TC : O(N*target/2), SC : O(N*target/2)
-            // return tab(N,sum/2,arr);
+            return tab(N,target/2,arr);
     
             // Space Optimizaton                TC : O(N*target/2), SC : O(target/2)
-            // return spaceOpt(N,sum/2,arr);
+            // return spaceOpt(N,target/2,arr);
         }
         return 0;
     }

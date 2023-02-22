@@ -3,6 +3,7 @@
 using namespace std;
 
 // } Driver Code Ends
+
 class Solution{
 
   public:
@@ -45,8 +46,6 @@ class Solution{
         }
         
         return dp[N-1][totSum] ;
-        
-        
     }
     bool memo(int i,int target , int arr[] , vector<vector<int>> &dp){
         if(target==0)

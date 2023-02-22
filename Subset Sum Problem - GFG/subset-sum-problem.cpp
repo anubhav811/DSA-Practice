@@ -70,7 +70,8 @@ public:
         prev[0] = true;
         
         // only i=0 is true;
-        prev[arr[0]] = true;
+        if(arr[0]<=sum)
+            prev[arr[0]] = true;
       
         
         for(int i=1;i<n;i++)

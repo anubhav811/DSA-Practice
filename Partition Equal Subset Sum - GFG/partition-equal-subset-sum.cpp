@@ -10,6 +10,25 @@ using namespace std;
 class Solution{
 public:
     
+    bool spaceOpt(int N , int target, int arr[]){
+        vector<bool> prev(target+1,false);
+        vector<bool> curr(target+1,false);
+        
+        prev[0]=curr[0] = true;
+        
+        for(int i=1;i<N;i++){
+            for(int j=1;j<=target;j++){
+                
+                bool pick = (arr[i]<=j) ? prev[j-arr[i]] : false;
+                bool notPick =prev[j];
+                
+                curr[j] = pick || notPick;
+            }
+            prev = curr;
+        }
+        
+        return prev[target];
+    }
     bool tab(int N,int target , int arr[]){
         
         vector<vector<bool>> dp(N,vector<bool>(target+1,false));
@@ -79,10 +98,10 @@ public:
             // return memo(N-1,target/2,arr,dp);
     
             // Tabulation                       TC : O(N*target/2), SC : O(N*target/2)
-            return tab(N,target/2,arr);
+            // return tab(N,target/2,arr);
     
             // Space Optimizaton                TC : O(N*target/2), SC : O(target/2)
-            // return spaceOpt(N,target/2,arr);
+            return spaceOpt(N,target/2,arr);
         }
         return 0;
     }

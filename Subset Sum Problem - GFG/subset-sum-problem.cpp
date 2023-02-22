@@ -67,7 +67,7 @@ public:
         vector<bool> prev(sum+1,false);
        
        // all j=0 values are false
-        prev[0] = false;
+        prev[0] = true;
         
         // only i=0 is true;
         prev[arr[0]] = true;
@@ -92,25 +92,23 @@ public:
         
         int n = arr.size();
         
-        // Recursion                        TC : O(2^N)
-        //                                  SC : O(N)
+        // Recursion                        TC : O(2^N), SC : O(N)
         // return recur(arr,n-1,sum);
         
-        // Memoization                      TC : O(N*target)
-        //                                  SC : O(N*target) + O(N)
+        // Memoization                      TC : O(N*target), SC : O(N*target) + O(N)
         // vector<vector<int>> dp(n+1,vector<int>(sum+1,-1));
         // return memo(arr,n-1,sum,dp);
         
-        // Tabulation                       TC : O(N*target)
-        //                                  SC : O(N*target) 
-        return tab(arr,n,sum);
+        // Tabulation                       TC : O(N*target), SC : O(N*target) 
+        // return tab(arr,n,sum);
         
-        // Space Optimizaton                TC : O(N*target)
-        //                                  SC : O(N*target) 
+        // Space Optimizaton                TC : O(N*target), SC : O(N*target) 
         return spaceOpt(arr,n,sum);
         
     }
 };
+
+
 
 //{ Driver Code Starts.
 int main() 

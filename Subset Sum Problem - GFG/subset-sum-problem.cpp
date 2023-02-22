@@ -92,8 +92,8 @@ public:
         
         int n = arr.size();
         
-        // Recursion                      TC : O(2^N)
-        //                                SC : O(N)
+        // Recursion                        TC : O(2^N)
+        //                                  SC : O(N)
         // return recur(arr,n-1,sum);
         
         // Memoization                      TC : O(N*target)
@@ -103,7 +103,7 @@ public:
         
         // Tabulation                       TC : O(N*target)
         //                                  SC : O(N*target) 
-        // return tab(arr,n,sum);
+        return tab(arr,n,sum);
         
         // Space Optimizaton                TC : O(N*target)
         //                                  SC : O(N*target) 

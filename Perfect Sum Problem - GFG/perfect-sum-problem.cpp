@@ -20,7 +20,7 @@ class Solution{
         return (pick+notPick);
         
     }
-    int memo(int i , int sum ,vector<int> &arr,vector<vector<int>> &dp){
+    int memo(int i , int sum ,int arr[],vector<vector<int>> &dp){
         
         if(dp[i][sum]!=-1){
             return dp[i][sum];
@@ -45,16 +45,9 @@ class Solution{
 	   // Doesnt give correct answer because this approach is tailored for positive integer, not 0 and negative
 	   // return recur(n-1,sum,arr)%mod;
 	   
-	   vector<int> a ;
-	   for(int i=0;i<n;i++){
-	       a.push_back(arr[i]);
-	   }
-	   // Memoization
-	   sort(a.begin(),a.end());
-	   reverse(a.begin(),a.end());
-	   
+       // Memoization
 	   vector<vector<int>> dp (n,vector<int>(sum+1,-1));
-	   return memo(n-1,sum,a,dp);
+	   return memo(n-1,sum,arr,dp);
     }
 	  
 };

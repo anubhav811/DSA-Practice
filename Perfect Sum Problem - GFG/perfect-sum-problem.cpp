@@ -37,6 +37,7 @@ class Solution{
         
         return dp[i][sum] = (pick+notPick)%mod;
         
+        
     }
     int tab(int n,int arr[],int sum){
         vector<vector<int>> dp(n,vector<int>(sum+1,0));
@@ -63,6 +64,34 @@ class Solution{
         
         return dp[n-1][sum]%mod;
     }
+    
+    int spaceOpt(int n,int arr[],int sum){
+        vector<int> prev(sum+1,0), curr(sum+1,0);
+        
+            if (arr[0] == 0){
+                prev[0] = 2;
+            }
+            else{
+                prev[0] = 1;
+            }
+        if (arr[0] <= sum && arr[0] != 0)
+            prev[arr[0]] = 1;
+            
+        curr = prev ;
+        for(int i=1;i<n;i++){
+            for(int j=0;j<=sum;j++){
+                
+                int notPick = prev[j]%mod;
+                int pick = (arr[i]<=j) ? prev[j-arr[i]]%mod:0;
+                
+                curr[j] = (notPick + pick)%mod;
+            }
+            prev = curr ;
+        }
+        
+        return prev[sum]%mod;
+    }
+
 	public:
 	int perfectSum(int arr[], int n, int sum)
 	{
@@ -75,7 +104,11 @@ class Solution{
 	   //return memo(n-1,sum,arr,dp);
 	   
 	   // Tabulation
-	    return tab(n,arr,sum);
+	   // return tab(n,arr,sum);
+	    
+	    // SpaceOpt
+	    return spaceOpt(n,arr,sum);
+
     }
 	  
 };

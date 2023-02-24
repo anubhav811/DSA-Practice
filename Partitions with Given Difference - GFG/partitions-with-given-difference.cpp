@@ -119,10 +119,10 @@ class Solution {
 	   
        // Memoization
 	   //vector<vector<int>> dp (n,vector<int>(target+1,-1));
-	   //return memo(n-1,target,arr,dp);
+	   return memo(n-1,target,arr,dp);
 	   
 	   // Tabulation
-	   // return tab(n,arr,target);
+	    return tab(n,arr,target);
 	    
 	    // SpaceOpt
 	    return spaceOpt(n,arr,target);        

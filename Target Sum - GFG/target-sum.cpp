@@ -99,17 +99,16 @@ class Solution {
         //Your code here
         
         int n = A.size();
-    
         int totSum = 0;
         for(auto it:A){
             totSum += it;
         }
         
-        if (totSum < abs(target) || (totSum - target) % 2) {
-            return 0;
-        }
+        if(totSum-target<0) return 0;
+        if((totSum-target)%2==1) return 0;
+        
+        int sum = (totSum-target)/2;
 
-        int sum = (totSum+target)/2;
         
         // Recursion                      TC : O(2^N), SC : O(N)
 	   // return recur(n-1,sum,A);

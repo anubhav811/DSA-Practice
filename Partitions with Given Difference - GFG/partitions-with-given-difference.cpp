@@ -3,6 +3,7 @@
 using namespace std;
 
 // } Driver Code Ends
+
 class Solution {
   public:
     int mod = 1e9+7;
@@ -118,17 +119,18 @@ class Solution {
 	   // return recur(n-1,target,arr);
 	   
        // Memoization
-	   vector<vector<int>> dp (n,vector<int>(target+1,-1));
-	    return memo(n-1,target,arr,dp);
+	   // vector<vector<int>> dp (n,vector<int>(target+1,-1));
+	   // return memo(n-1,target,arr,dp);
 	   
 	   // Tabulation
-	    return tab(n,arr,target);
+	   // return tab(n,arr,target);
 	    
 	    // SpaceOpt
 	    return spaceOpt(n,arr,target);        
         
     }
 };
+
 
 //{ Driver Code Starts.
 int main() {

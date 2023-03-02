@@ -11,24 +11,22 @@ using namespace std;
 class Solution{
   public:
     int spaceOpt(int n,int price[]){
-        vector<int> prev(n+1,0),curr(n+1,0);
+        vector<int> prev(n+1,0);
         
         for(int j=0;j<=n;j++){
-            curr[j] = (j/1) * price[0];
+            prev[j] = (j/1) * price[0];
         }
         
-        prev = curr;
-        
+
          for(int i=1;i<n;i++){
             for(int j=0;j<=n;j++){
                 
                 int notTake = 0 + prev[j];
                 int rodlen = i+1;
-                int take = (rodlen<=j) ? price[i] + curr[j-rodlen] : INT_MIN;
+                int take = (rodlen<=j) ? price[i] + prev[j-rodlen] : INT_MIN;
                 
-                curr[j] = max(notTake,take);
+                prev[j] = max(notTake,take);
             }
-            prev = curr;
         }
         
         return prev[n];
@@ -76,15 +74,19 @@ class Solution{
         return max(take,notTake);
     }
     int cutRod(int price[], int n) {
-        //code here
-        // return recur(n-1,price,n);
+        //code here                         // TC : O(Expo)
+                                            // SC : O(target)
+        // return recur(n-1,price,n);            
         
-        // vector<vector<int>> dp(n,vector<int>(n+1,-1));
+        // vector<vector<int>> dp(n,vector<int>(n+1,-1));     // TC : O(N*N)
+                                                              // SC: O(N*N) + O(target)
         // return memo(n-1,price,n,dp);
+            
+        // return tab(n,price);                               // TC : O(N*N)
+                                                              // SC: O(N*N)
         
-        // return tab(n,price);
-        
-        return spaceOpt(n,price);
+        return spaceOpt(n,price);                            // TC : O(N*N)
+                                                              // SC: O(N)
     }
     
 };

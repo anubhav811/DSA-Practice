@@ -10,12 +10,39 @@ class Solution
 {
     public:
     //Function to find the length of longest common subsequence in two strings.
+    int spaceOpt(int x,int y,string s1, string s2){
+    
+        vector<int> prev(x+1,0),curr(x+1,0);
+        
+        prev = curr;
+        
+        for(int i=1;i<x+1;i++){
+            for(int j=1;j<y+1;j++){
+                
+                if(s1[i-1]==s2[i-1]){
+                    curr[j] = 1 + prev[j-1];
+                }
+                else{
+                    curr[j] = max(curr[j-1] , prev[j]);
+                }
+            }
+            prev = curr;
+        }
+        
+        return prev[x];
+        
+        
+    }
+    
     int tab(int x, int y , string s1 , string s2){
         
+        // Adding one extra to shift indices to one right
         vector<vector<int>> dp(x+1,vector<int>(y+1,0));
         
         for(int i=1;i<x+1;i++){
             for(int j=1;j<y+1;j++){
+                // as we have shifted right once , we will have to do 1 minus index to fetch the char from string
+                // because string ke indexes thori shift kare the , kar bhi nahi skte lmao
                     if(s1[i-1]==s2[j-1]){
                         dp[i][j] =  1 + dp[i-1][j-1];
                     }
@@ -65,7 +92,7 @@ class Solution
         // vector<vector<int>> dp(x,vector<int>(y,-1));         // TC : O(X *  Y)
                                                                 // SC : O(X*Y) + O(X+Y)
         // return memo(x-1,y-1,s1,s2,dp);
-        
+        // 
         return tab(x,y,s1,s2);
     }
 };

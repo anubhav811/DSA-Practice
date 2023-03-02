@@ -24,9 +24,13 @@ public:
     int rob(vector<int> &valueInHouse)
     {
         vector<int> temp1, temp2;
+
         long long n = valueInHouse.size();
         if (n == 1)
             return valueInHouse[0];
+
+            // [1,2,3,4,5,6,24,43]
+
         for (long long i = 0; i < n; i++)
         {
             if (i != 0)

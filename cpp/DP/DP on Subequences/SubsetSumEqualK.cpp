@@ -17,6 +17,11 @@ public:
 
         return pick || notPick;
     }
+
+
+
+
+    
     bool memo(vector<int> &arr, int i, int sum, vector<vector<int>> &dp)
     {
 

@@ -5,18 +5,26 @@ private:
 
 public:
     // Function to count number of ways to reach the nth stair.
+    int recur(int n)
+    {
+        if (n <= 2)
+            return n;
+        int onestep = recur(n-1);
+        return (recur(n - 1) + recur(n - 2));
+    }
+
     int memo(int n, vector<int> &dp)
     {
+        if (n <= 2)
+            return n;
         if (dp[n] != -1)
         {
-            return dp[n] % mod;
+            return dp[n];
         }
 
-        if (n <= 2)
-            return dp[n] = n % mod;
-
-        return dp[n] = (memo(n - 1, dp) % mod + memo(n - 2, dp) % mod) % mod;
+        return dp[n] = (memo(n - 1, dp) + memo(n - 2, dp));
     }
+
     int tab(int n)
     {
         vector<int> dp(n + 1, -1);
@@ -25,7 +33,7 @@ public:
         dp[1] = 1;
         dp[2] = 2;
 
-        for (int i = 3; i < n + 1; i++)
+        for (int i = 2; i < n + 1; i++)
         {
             dp[i] = (dp[i - 1] % mod + dp[i - 2] % mod) % mod;
         }
@@ -50,7 +58,11 @@ public:
 
     int countWays(int n)
     {
-        // Memoization
+        // Recursion     TC : O(2^n)
+        //               Sc : O(N)
+
+        // Memoization          TC: O(N)
+        //                      SC: O(N)
         // vector<int> dp(n + 1, -1);
         // return memo(n, dp) % mod;
 

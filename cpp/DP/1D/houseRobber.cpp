@@ -85,18 +85,18 @@ public:
     {
         // Recursion TLE
         // array and index passed
-        // return recur(arr,n-1);
+        return recur(arr, n - 1);
 
         // Memoization TLE                 TC : O(N)
         //                                 SC : O(N)
         // array ,dp and index passed
-        // vector<int> dp(n+1,-1);
-        // return memo(arr,n-1,dp);
+        vector<int> dp(n + 1, -1);
+        return memo(arr, n - 1, dp);
 
         // DP Tabulation                   TC : O(N)
         //                                 SC : O(N)
         // array and size passed
-        // return tab(arr);
+        return tab(arr,n);
 
         // Space Optimization              TC -> O(N)
         //                                 SC -> O(1)

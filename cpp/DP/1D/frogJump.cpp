@@ -8,6 +8,19 @@ int main()
 class Solution
 {
 public:
+    int recur(int i, vector<int> &heights)
+    {
+        if (i == 0)
+            return 0;
+
+        int one = abs(heights[i] - heights[i - 1]) + recur(i - 1, heights);
+        int two = INT_MAX;
+        if (i > 1)
+            two = abs(heights[i] - heights[i - 2]) + recur(i - 2, heights);
+
+        return min(one, two);
+    }
+    
     int Memo(int i, vector<int> &heights, vector<int> &dp)
     {
         if (i == 0)
@@ -23,6 +36,7 @@ public:
 
         return dp[i] = min(one, two);
     }
+
     int tabulation(int n, vector<int> &heights)
     {
         vector<int> dp(n + 1, -1);

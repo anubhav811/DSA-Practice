@@ -12,14 +12,12 @@ class Solution
     //Function to find the length of longest common subsequence in two strings.
     int spaceOpt(int x,int y,string s1, string s2){
     
-        vector<int> prev(x+1,0),curr(x+1,0);
-        
-        prev = curr;
+        vector<int> prev(y+1,0),curr(y+1,0);
         
         for(int i=1;i<x+1;i++){
             for(int j=1;j<y+1;j++){
                 
-                if(s1[i-1]==s2[i-1]){
+                if(s1[i-1]==s2[j-1]){
                     curr[j] = 1 + prev[j-1];
                 }
                 else{
@@ -29,7 +27,7 @@ class Solution
             prev = curr;
         }
         
-        return prev[x];
+        return prev[y];
         
         
     }
@@ -86,15 +84,25 @@ class Solution
     {
         // your code here
         
+        // Recursion
         // return recur(x-1,y-1,s1,s2);     // TC : O(2^x *  2^y)
                                             // SC : O(X+Y)
         
+        // Memoization
         // vector<vector<int>> dp(x,vector<int>(y,-1));         // TC : O(X *  Y)
                                                                 // SC : O(X*Y) + O(X+Y)
         // return memo(x-1,y-1,s1,s2,dp);
-        // 
-        return tab(x,y,s1,s2);
+        
+        // Tabulation                                       TC : O(X*Y)
+        //                                                  SC : O(X*Y)
+        //return tab(x,y,s1,s2);                            
+        
+        
+        // Space Optimization                               TC : O(X*Y)
+        //                                                  SC : O(X+1)
+        return spaceOpt(x,y,s1,s2);
     }
+    
 };
 
 

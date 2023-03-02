@@ -10,6 +10,25 @@ using namespace std;
 
 class Solution{
   public:
+    int tab(int n,int price[]){
+        vector<vector<int>> dp(n,vector<int>(n+1,0));
+        for(int j=0;j<=n;j++){
+            dp[0][j] = (j/1) * price[0];
+        }
+        
+        for(int i=1;i<n;i++){
+            for(int j=0;j<=n;j++){
+                
+                int notTake = 0 + dp[i-1][j];
+                int rodlen = i+1;
+                int take = (rodlen<=j) ? price[i] + dp[i][j-rodlen] : INT_MIN;
+                
+                dp[i][j] = max(notTake,take);
+            }
+        }
+        
+        return dp[n-1][n];
+    }
     int memo(int i,int price[],int n,vector<vector<int>> &dp){
         if(i==0){
             return (n/(i+1))*price[i];
@@ -36,8 +55,10 @@ class Solution{
         //code here
         // return recur(n-1,price,n);
         
-        vector<vector<int>> dp(n,vector<int>(n+1,-1));
-        return memo(n-1,price,n,dp);
+        // vector<vector<int>> dp(n,vector<int>(n+1,-1));
+        // return memo(n-1,price,n,dp);
+        
+        return tab(n,price);
     }
     
 };

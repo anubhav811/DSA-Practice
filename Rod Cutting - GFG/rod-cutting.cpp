@@ -10,6 +10,30 @@ using namespace std;
 
 class Solution{
   public:
+    int spaceOpt(int n,int price[]){
+        vector<int> prev(n+1,0),curr(n+1,0);
+        
+        for(int j=0;j<=n;j++){
+            curr[j] = (j/1) * price[0];
+        }
+        
+        prev = curr;
+        
+         for(int i=1;i<n;i++){
+            for(int j=0;j<=n;j++){
+                
+                int notTake = 0 + prev[j];
+                int rodlen = i+1;
+                int take = (rodlen<=j) ? price[i] + curr[j-rodlen] : INT_MIN;
+                
+                curr[j] = max(notTake,take);
+            }
+            prev = curr;
+        }
+        
+        return prev[n];
+        
+    }
     int tab(int n,int price[]){
         vector<vector<int>> dp(n,vector<int>(n+1,0));
         for(int j=0;j<=n;j++){
@@ -58,7 +82,9 @@ class Solution{
         // vector<vector<int>> dp(n,vector<int>(n+1,-1));
         // return memo(n-1,price,n,dp);
         
-        return tab(n,price);
+        // return tab(n,price);
+        
+        return spaceOpt(n,price);
     }
     
 };

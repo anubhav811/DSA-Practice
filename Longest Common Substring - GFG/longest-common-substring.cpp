@@ -3,9 +3,31 @@
 using namespace std;
 
 // } Driver Code Ends
+
 class Solution{
     public:
-    int lcs(string s1, string s2, int n, int m){
+    int lcsSpaceOpt(string s1, string s2,int n,int m){
+
+        vector<int> prev(m+1,0), cur(m+1,0);
+    
+        int ans = 0;
+        
+        for(int i=1;i<=n;i++){
+            for(int j=1;j<=m;j++){
+                if(s1[i-1]==s2[j-1]){
+                    int val = 1 + prev[j-1];
+                    cur[j] = val;
+                    ans = max(ans,val);
+                }
+                else
+                    cur[j] = 0;
+            }
+            prev=cur;
+        }
+        
+        return ans;
+    }
+    int lcsTab(string s1, string s2, int n, int m){
         vector<vector<int>> dp(n+1,vector<int>(m+1,0));
         
         int mx = 0;
@@ -27,7 +49,8 @@ class Solution{
     int longestCommonSubstr (string S1, string S2, int n, int m)
     {
 
-        return lcs(S1,S2,n,m);
+        // return lcsTab(S1,S2,n,m);
+        return lcsSpaceOpt(S1,S2,n,m);
     }
 };
 

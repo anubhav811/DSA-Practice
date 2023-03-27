@@ -80,7 +80,7 @@ public:
             return 0;
         }
 
-        if (s1[i1] == s2[i2])
+        if (s1[i1] == s2[i2]) 
             return 1 + recur(i1 - 1, i2 - 1, s1, s2);
         else
         {

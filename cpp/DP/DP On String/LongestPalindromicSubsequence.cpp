@@ -27,9 +27,9 @@ public:
 
         return prev[y];
     }
+
     int tab(int x, int y, string s1, string s2)
     {
-
         // Adding one extra to shift indices to one right
         vector<vector<int>> dp(x + 1, vector<int>(y + 1, 0));
 
@@ -39,6 +39,7 @@ public:
             {
                 // as we have shifted right once , we will have to do 1 minus index to fetch the char from string
                 // because string ke indexes thori shift kare the , kar bhi nahi skte lmao
+
                 if (s1[i - 1] == s2[j - 1])
                 {
                     dp[i][j] = 1 + dp[i - 1][j - 1];
@@ -49,7 +50,6 @@ public:
                 }
             }
         }
-
         return dp[x][y];
     }
     int memo(int i1, int i2, string s1, string s2, vector<vector<int>> &dp)

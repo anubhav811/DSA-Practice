@@ -23,7 +23,7 @@ class Solution {
             return 1 + min(del,min(ins,rep));
             
         }
-        int memo(int i , int j , string s , string t , vector<vector<int>> &dp){
+        int memo(int i , int j , string &s , string &t , vector<vector<int>> &dp){
             if(i<0) return j+1;
             if(j<0) return i+1;
             
@@ -37,18 +37,51 @@ class Solution {
             
             return dp[i][j] = 1 + min(del,min(ins,rep));
         }
+        
+        int tab(int n , int m ,string &s ,string &t){
+            
+            vector<vector<int>> dp(n+1,vector<int>(m+1,0));
+            
+            for(int i=0;i<n+1;i++){
+                dp[i][0] = i;
+            }
+            
+            for(int j=0;j<m+1;j++){
+                dp[0][j] = j;
+            }
+            
+            
+            for(int i = 1; i<n+1;i++){
+                for(int j=1; j<m+1;j++){
+                    
+                    if(s[i-1]==t[j-1]){
+                        dp[i][j] = 0 + dp[i-1][j-1];
+                    }
+                    else{
+                        int del = dp[i-1][j];
+                        int ins = dp[i-1][j-1];
+                        int rep = dp[i][j-1];
+                        
+                        dp[i][j] = 1 + min(del,min(ins,rep));
+                    }
+                }
+            }
+            
+            return dp[n][m];
+        }
         int editDistance(string s, string t) {
         // Code here
         
         int n = s.size();
         int m = t.size();
         
-
-        // return recur(n-1,m-1,s,t);                  
-        
-        vector<vector<int>> dp(n,vector<int>(m,-1));
-        return memo(n-1,m-1,s,t,dp);
+ 
+        // return recur(n-1,m-1,s,t);                   TC  : Exponential SC: auxiallary stacck O(n*m)
+         
+        // vector<vector<int>> dp(n,vector<int>(m,-1));  TC : O(N*M) SC : O(N*M) + O(N*M)(stack)
+        // return memo(n-1,m-1,s,t,dp);
             
+        return tab(n,m,s,t);
         
     }
 };

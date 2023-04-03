@@ -16,9 +16,9 @@ class Solution {
             if(s[i]==t[j]){
                 return 0 + recur(i-1,j-1,s,t);
             }
+            int ins = recur(i,j-1,s,t);
             int del = recur(i-1,j,s,t);
-            int ins = recur(i-1,j-1,s,t);
-            int rep = recur(i,j-1,s,t);
+            int rep = recur(i-1,j-1,s,t);
             
             return 1 + min(del,min(ins,rep));
             
@@ -31,9 +31,9 @@ class Solution {
             
             if(s[i]==t[j]) return 0 + memo(i-1,j-1,s,t,dp);
             
+            int ins = memo(i,j-1,s,t,dp);
             int del = memo(i-1,j,s,t,dp);
-            int ins = memo(i-1,j-1,s,t,dp);
-            int rep = memo(i,j-1,s,t,dp);
+            int rep = memo(i-1,j-1,s,t,dp);
             
             return dp[i][j] = 1 + min(del,min(ins,rep));
         }
@@ -58,9 +58,9 @@ class Solution {
                         dp[i][j] = 0 + dp[i-1][j-1];
                     }
                     else{
+                        int ins = dp[i][j-1];
                         int del = dp[i-1][j];
-                        int ins = dp[i-1][j-1];
-                        int rep = dp[i][j-1];
+                        int rep = dp[i-1][j-1];
                         
                         dp[i][j] = 1 + min(del,min(ins,rep));
                     }
@@ -81,7 +81,7 @@ class Solution {
         // vector<vector<int>> dp(n,vector<int>(m,-1));  TC : O(N*M) SC : O(N*M) + O(N*M)(stack)
         // return memo(n-1,m-1,s,t,dp);
             
-        return tab(n,m,s,t);
+        return tab(n,m,s,t);                 //  TC : O(N*M) SC : O(N*M) 
         
     }
 };

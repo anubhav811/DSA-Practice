@@ -69,6 +69,35 @@ class Solution {
             
             return dp[n][m];
         }
+        
+        int spaceOpt(int n , int m , string s , string t){
+            
+            vector<int> prev(m+1,0) ,curr(m+1,0);
+            
+            for(int j=0;j<m+1;j++){
+                prev[j] = j;
+            }
+            
+            for(int i = 1; i<n+1;i++){
+                for(int j=1; j<m+1;j++){
+                    
+                    curr[0] = i ;
+                    if(s[i-1]==t[j-1]){
+                        curr[j] = 0 + prev[j-1];
+                    }
+                    else{
+                        int ins = curr[j-1];
+                        int del = prev[j];
+                        int rep = prev[j-1];
+                        
+                        curr[j] = 1 + min(del,min(ins,rep));
+                    }
+                }
+                prev = curr;
+            }        
+            
+            return prev[m];
+        }
         int editDistance(string s, string t) {
         // Code here
         
@@ -81,7 +110,9 @@ class Solution {
         // vector<vector<int>> dp(n,vector<int>(m,-1));  TC : O(N*M) SC : O(N*M) + O(N*M)(stack)
         // return memo(n-1,m-1,s,t,dp);
             
-        return tab(n,m,s,t);                 //  TC : O(N*M) SC : O(N*M) 
+        // return tab(n,m,s,t);                 //  TC : O(N*M) SC : O(N*M) 
+        
+        return spaceOpt(n,m,s,t);
         
     }
 };

@@ -81,12 +81,12 @@ class Solution
     {
         
         // worst
-        // return generateAllandThenFilter(a);
+        // return generateAllandThenFilter(a);                 TC : exponential ( 2n )  SC : bohot zyada
 
         // better
-        // return recur(0,-1,a,n);
+        // return recur(0,-1,a,n);                             TC : 2^n ,  SC : O(N)
 
-        // best
+        // best                                                TC : O(N*N) ,  SC : O(N*N) + O(N)
         vector<vector<int>> dp(n,vector<int>(n+1,-1));
         return memo(0,-1,a,n,dp);
       

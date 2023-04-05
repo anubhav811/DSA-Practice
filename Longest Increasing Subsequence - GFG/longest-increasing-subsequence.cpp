@@ -55,7 +55,25 @@ class Solution
     */
     
     // Optimized solutions better
-        int spaceOpt(int n , int A[]){
+    
+    int tab2(int n , int A[]){
+        vector<int> dp(n,1);
+        
+        int maxi = 1;
+        for(int i=0;i<n;i++){
+            for(int prev=0;prev<i;prev++){
+                if(A[prev]<A[i]){
+                    dp[i] = max(dp[i],1+dp[prev]);
+                }
+    
+            }
+            maxi = max(dp[i],maxi);
+        }
+        
+        return maxi;
+        
+    }
+    int spaceOpt(int n , int A[]){
         
         vector<int> curr(n+1,0) , next(n+1,0);
 
@@ -125,7 +143,10 @@ class Solution
         // return tab(n,A);
         
         // bestest                                       TC: O(N*N) ,  SC : O(N)
-        return spaceOpt(n,A);
+        // return spaceOpt(n,A);
+        
+        // bestum best (usefull when we need to trace the LIS (backtrack))
+        return tab2(n,A);
       
     }
 };

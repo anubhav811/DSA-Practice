@@ -55,6 +55,37 @@ class Solution
     */
     
     // Optimized solutions better
+        int spaceOpt(int n , int A[]){
+        
+        vector<int> curr(n+1,0) , next(n+1,0);
+
+        for(int i=n-1;i>=0;i--){
+            for(int j=i-1;j>=-1;j--){
+                int pick= (j==-1 || A[i]>A[j]) ?  1+ next[i+1]: 0;
+                int notPick = next[j+1];
+                
+                curr[j+1] = max(pick,notPick);
+            }
+            next = curr;
+        }
+
+        return curr[0];
+    }
+    int tab(int n , int A[]){
+        
+        vector<vector<int>> dp(n+1,vector<int>(n+1,0));
+
+        for(int i=n-1;i>=0;i--){
+            for(int j=i-1;j>=-1;j--){
+                int pick= (j==-1 || A[i]>A[j]) ?  1+ dp[i+1][i+1]: 0;
+                int notPick = dp[i+1][j+1];
+                
+                dp[i][j+1] = max(pick,notPick);
+            }
+        }
+
+        return dp[0][0];
+    }
     int memo(int i , int prev, int a[] , int n,vector<vector<int>>&dp){
         
         if(i==n){
@@ -77,18 +108,24 @@ class Solution
         
         return max(pick,notPick);
     }
-    int longestSubsequence(int n, int a[])
+    int longestSubsequence(int n, int A[])
     {
         
-        // worst
-        // return generateAllandThenFilter(a);                 TC : exponential ( 2n )  SC : bohot zyada
+        // worst                                    TC : exponential ( 2n )  SC : bohot zyada
+        // return generateAllandThenFilter(A);
 
-        // better
-        // return recur(0,-1,a,n);                             TC : 2^n ,  SC : O(N)
+        // ok                                   TC : 2^n ,  SC : O(N)
+        // return recur(0,-1,A,n);
 
-        // best                                                TC : O(N*N) ,  SC : O(N*N) + O(N)
-        vector<vector<int>> dp(n,vector<int>(n+1,-1));
-        return memo(0,-1,a,n,dp);
+        // better                                     TC : O(N*N) ,  SC : O(N*N) + O(N)
+        // vector<vector<int>> dp(n,vector<int>(n+1,-1));
+        // return memo(0,-1,A,n,dp);
+
+        // best                                         TC: O(N*N) ,  SC : O(N*N)
+        // return tab(n,A);
+        
+        // bestest                                       TC: O(N*N) ,  SC : O(N)
+        return spaceOpt(n,A);
       
     }
 };

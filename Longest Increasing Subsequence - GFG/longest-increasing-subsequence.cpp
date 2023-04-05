@@ -8,6 +8,53 @@ using namespace std;
 class Solution
 {
     public:
+    
+     /*  BRUTE FORCE BAD
+
+    vector<vector<int>> AllPossibleSubseq(int A[],int n) {
+	vector<vector<int>>ans;
+	for (int num = 0; num < (1 << n); num++) {
+		vector<int> sub ;
+		for (int i = 0; i < n; i++) {
+			//check if the ith bit is set or not
+			if (num & (1 << i)) {
+				sub.push_back(A[i]);
+			}
+		}
+		if (sub.size() > 0) {
+			ans.push_back(sub);
+		}
+        }
+        sort(ans.begin(), ans.end());
+        return ans;
+    }
+
+    int generateAllandThenFilter(int A[],int n){
+
+        // generating all subsequences
+        vector<vector<int>> subs = AllPossibleSubseq(A); 
+
+        int len = 0;
+        for(auto sub : subs){
+            bool flag = true;
+            for(int i=0;i<sub.size()-1;i++){
+                if(sub[i]>=sub[i+1]) {
+                    flag = false;
+                    break;
+                }
+            }
+            if(flag){
+                int n = sub.size();
+                len = max(n,len);
+            }
+        }
+
+        return len;
+
+    }
+    */
+    
+    // Optimized solutions better
     int memo(int i , int prev, int a[] , int n,vector<vector<int>>&dp){
         
         if(i==n){
@@ -32,12 +79,20 @@ class Solution
     }
     int longestSubsequence(int n, int a[])
     {
-        // return recur(0,-1,a,n);
         
+        // worst
+        // return generateAllandThenFilter(a);
+
+        // better
+        // return recur(0,-1,a,n);
+
+        // best
         vector<vector<int>> dp(n,vector<int>(n+1,-1));
         return memo(0,-1,a,n,dp);
+      
     }
 };
+
 
 //{ Driver Code Starts.
 int main()

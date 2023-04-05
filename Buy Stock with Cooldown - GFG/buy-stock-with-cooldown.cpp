@@ -24,7 +24,7 @@ class Solution{
                     }   
                 }
             }
-            next=next;
+            next=curr;
         }
 
         return curr[0][0];
@@ -105,9 +105,9 @@ class Solution{
         // vector<vector<vector<long long>>> dp(n,vector<vector<long long>>(2,vector<long long>(2,-1)));
         // return memo(0,0,0,prices,dp);   // TC :  O(N*2*2)      SC : O(N*2*2) +  O(N)
  
-        return tab(n,prices);           // TC : O(N*2*2)       SC : O(N*2*2)
+        // return tab(n,prices);           // TC : O(N*2*2)       SC : O(N*2*2)
  
-        // return spaceOpt(n,prices);          // TC : O(N*2*2)       SC : O(2*2) ~ O(K)
+        return spaceOpt(n,prices);          // TC : O(N*2*2)       SC : O(2*2) ~ O(K)
     }
 };
 

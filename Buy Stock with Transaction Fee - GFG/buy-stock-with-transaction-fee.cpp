@@ -5,7 +5,7 @@ using namespace std;
 // } Driver Code Ends
 class Solution{
     public:
-    long long spaceOpt(int n , vector<long long> &A){
+    long long spaceOpt(int n , vector<long long> &A,int fee){
         vector<long long> next(2,-1) , curr(2,-1);
 
         next[0] = 0;
@@ -16,14 +16,14 @@ class Solution{
                 if(buy==0)
                     curr[0] = max(0 + next[0],-A[i] + next[1]);
                 if(buy==1)
-                    curr[1] = max(0 + next[1],A[i] + next[0]);
+                    curr[1] = max(0 + next[1],A[i] + next[0] -fee);
             }
             next = curr;
         }
 
         return curr[0];
     }
-    long long tab(int n ,vector<long long> &A)
+    long long tab(int n ,vector<long long> &A,int fee)
     {
         vector<vector<long long>> dp(n+1,vector<long long>(2,-1));
 
@@ -35,7 +35,7 @@ class Solution{
                 if(buy==0)
                     dp[i][0] = max(0 + dp[i+1][0],-A[i] + dp[i+1][1]);
                 if(buy==1)
-                    dp[i][1] = max(0 + dp[i+1][1],A[i] + dp[i+1][0]);
+                    dp[i][1] = max(0 + dp[i+1][1],A[i] + dp[i+1][0]-fee);
             }
         }
 
@@ -76,13 +76,13 @@ class Solution{
     long long maximumProfit(vector<long long>&A, int n, int fee) {
 
         
-        // return recur(0,0,A,fee);                                // TC : 2^n  SC : O(n)
-        vector<vector<long long>> dp(n,vector<long long>(2,-1));   // TC : O(N*2) SC :  O(N*2) + O(N)
-        return memo(0,0,A,fee,dp);
+        // return recur(0,0,A,fee);                                  // TC : 2^n  SC : O(n)
+        // vector<vector<long long>> dp(n,vector<long long>(2,-1));  // TC : O(N*2) SC :  O(N*2) + O(N)
+        // return memo(0,0,A,fee,dp);
 
-        // return tab(n,A,fee);                               TC : O(N*2) SC :  O(N*2) 
+        // return tab(n,A,fee);                                         // TC : O(N*2) SC :  O(N*2) 
 
-        // return spaceOpt(n,A,fee);                             //TC : O(N*2) SC : O(N)
+        return spaceOpt(n,A,fee);                             //TC : O(N*2) SC : O(N)
     }
 };
 

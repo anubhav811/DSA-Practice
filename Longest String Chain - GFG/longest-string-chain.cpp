@@ -6,8 +6,7 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
   public:
-      static bool cmp(string &a, string &b)
-    {
+      static bool cmp(string &a, string &b){
         return a.length() < b.length();
     }
     
@@ -36,41 +35,42 @@ class Solution {
 
     // Compare function APPROACH 
     bool compare(string& s1, string& s2){
-        if(s1.size() != s2.size() + 1) return false;
+        if(s1.size() != s2.size()+1) return false;
         
-        int first = 0;
+        int first = 0 ;
         int second = 0;
         
-        while(first < s1.size()){
-            if(second < s2.size() && s1[first] == s2[second]){
-                first ++;
-                second ++;
+        while(first<s1.size()){
+            if(s1[first]==s2[second] and second<s2.size()) {
+                first++;
+                second++;
             }
-            else first ++;
+            else{
+                first++;               
+            }
         }
-        if(first == s1.size() && second == s2.size()) return true;
-        else return false; 
+        
+        if(first==s1.size() and second==s2.size()) return true;
+        return false;
     }
 
-    int longestChain(int n, vector<string>& a) {
-        // Code here
-        
-        int ans = 0;
+    int longestChain(int n, vector<string>& words) {
+
         vector<int> dp(n,1);
-        sort(a.begin(), a.end(), cmp);
+        int maxi = 0;
         
-        for(int i=0;i<n;i++)
-        {
-            for(int j=0;j<i;j++)
-            {
-                if(compare(a[i],a[j]) and dp[j]+1 >= dp[i])
-                    dp[i] = max(dp[i], dp[j]+1);
+        sort(words.begin(),words.end(),cmp);
+        
+        for(int i=0;i<n;i++){
+            for(int prev=0;prev<i;prev++){
+                if(dp[prev]+1 >=  dp[i] and compare(words[i],words[prev])){
+                    dp[i] = 1+ dp[prev];
+                }
             }
-            
-            ans = max(ans, dp[i]);
+            maxi = max(dp[i],maxi);
         }
         
-        return ans;
+        return maxi;
     }
 };
 

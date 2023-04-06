@@ -56,6 +56,25 @@ class Solution
     
     // Optimized solutions better
     
+    int binSrch(int n , int a[]){
+        
+        vector<int> temp;
+        temp.push_back(a[0]);
+            
+        for(int i=1;i<n;i++){
+            
+            if(a[i]>temp[temp.size()-1]){
+                temp.push_back(a[i]);
+            }
+            else{
+                int x = lower_bound(temp.begin(),temp.end(),a[i])-temp.begin();
+                temp[x] = a[i];
+            }
+        }
+        return temp.size();
+    }
+    
+    
     int tab2(int n , int A[]){
         vector<int> dp(n,1);
         
@@ -145,8 +164,12 @@ class Solution
         // bestest                                       TC: O(N*N) ,  SC : O(N)
         // return spaceOpt(n,A);
         
-        // bestum best (usefull when we need to trace the LIS (backtrack))
-        return tab2(n,A);
+        // bestum best (usefull when we need to trace the LIS (backtrack))    TC: O(N*N) ,  SC : O(N)
+        // return tab2(n,A);
+        
+        // ye wala pakka best (Uses Binary Search) -> cant be used for printing LIS tho
+        
+        return binSrch(n,A);
       
     }
 };

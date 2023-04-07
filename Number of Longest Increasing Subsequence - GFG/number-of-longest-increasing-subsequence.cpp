@@ -6,11 +6,10 @@ using namespace std;
 class Solution{
     public:
     int NumberofLIS(int n, vector<int>&arr) {
-        // Code here
+        
         vector<int> dp(n,1);
         vector<int> count(n,1);
         
-        int maxi = -1;
         int maxVal = -1; 
         
         for(int i=0;i<n;i++){
@@ -23,10 +22,7 @@ class Solution{
                     count[i] += count[prev] ;
                 }
             }
-            if(dp[i]>maxVal){
-                maxVal = dp[i];
-                maxi = i;
-            }
+            maxVal = max(maxVal,dp[i]);
             
         }
         

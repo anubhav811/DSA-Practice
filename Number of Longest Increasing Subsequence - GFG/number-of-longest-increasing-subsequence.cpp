@@ -9,7 +9,10 @@ class Solution{
         // Code here
         vector<int> dp(n,1);
         vector<int> count(n,1);
-        int maxi = 1 ;
+        
+        int maxi = -1;
+        int maxVal = -1; 
+        
         for(int i=0;i<n;i++){
             for(int prev=0;prev<i;prev++){
                 if(dp[i]<dp[prev]+1 && arr[i]>arr[prev]){
@@ -20,16 +23,18 @@ class Solution{
                     count[i] += count[prev] ;
                 }
             }
-            maxi = max(maxi,dp[i]);
-        }
-        
+            if(dp[i]>maxVal){
+                maxVal = dp[i];
+                maxi = i;
+            }
             
-        int res =0;
-        
-        for(int i=0; i<n; i++){
-           if(dp[i]==maxi) res+=count[i];
         }
-
+        
+        int res = 0;
+        for(int i=0;i<n;i++){
+            if(dp[i]==maxVal)
+                res += count[i];
+        }
         return res;
         
     }

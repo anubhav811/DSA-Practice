@@ -19,12 +19,29 @@ public:
 	   return dp[i]=max(take,notTake);
 	   
 	}
+	int tab(int n , int *arr){
+	    vector<int> dp(n+1,0);
+	    
+	    dp[0] = 0;
+	    dp[1] = arr[0];
+	    
+	    for(int i=2;i<n+1;i++){
+	        int take = arr[i-1] + dp[i-2];
+	        int notTake = dp[i-1];
+	        dp[i] = max(take,notTake);
+	    }
+	    
+	    return dp[n];
+	    
+	}
 	int findMaxSum(int *arr, int n) {
 	    
-	   // return recur(n-1,arr, n);
-	    
-	    vector<int> dp(n,-1);
-	    return memo(n-1,arr,n,dp);
+	   // return recur(n-1,arr, n);     TC : O(2^n) SC: O(N)
+	     
+	   // vector<int> dp(n,-1);          // TC : O(N)  SC : O(N) + O(N) ~ O(N);
+	   // return memo(n-1,arr,n,dp);
+	                        
+	   return tab(n,arr);            // TC
 	}
 };
 

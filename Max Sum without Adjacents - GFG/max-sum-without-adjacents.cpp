@@ -25,6 +25,7 @@ public:
 	    dp[0] = 0;
 	    dp[1] = arr[0];
 	    
+
 	    for(int i=2;i<n+1;i++){
 	        int take = arr[i-1] + dp[i-2];
 	        int notTake = dp[i-1];
@@ -34,6 +35,25 @@ public:
 	    return dp[n];
 	    
 	}
+	
+	int spaceOpt(int n , int *arr){
+
+	    int prev1 = 0;
+	    int prev2 = arr[0];
+	    
+	    int curr = 0;
+	    
+	    for(int i=2;i<n+1;i++){
+	        int take = arr[i-1] + prev1;
+	        int notTake = prev2;
+	        curr = max(take,notTake);
+	        prev1=prev2;
+	        prev2=curr;
+	    }
+	    
+	    return prev2;
+	    
+	}
 	int findMaxSum(int *arr, int n) {
 	    
 	   // return recur(n-1,arr, n);     TC : O(2^n) SC: O(N)
@@ -41,7 +61,9 @@ public:
 	   // vector<int> dp(n,-1);          // TC : O(N)  SC : O(N) + O(N) ~ O(N);
 	   // return memo(n-1,arr,n,dp);
 	                        
-	   return tab(n,arr);            // TC
+	   //return tab(n,arr);            // TC : O(N)  SC: O(N);
+	   
+	   return spaceOpt(n,arr);
 	}
 };
 

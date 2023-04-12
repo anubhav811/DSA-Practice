@@ -24,8 +24,8 @@ class Solution{
             
             return dp[1][n];
         }
-        int memo(int i , int j , vector<int> &a ,vector<vector<int>> &dp){
         
+        int memo(int i , int j , vector<int> &a ,vector<vector<int>> &dp){
             if(i>j) return 0;
         
             if(dp[i][j] != -1) return dp[i][j];
@@ -58,7 +58,7 @@ class Solution{
             // vector<vector<int>> dp(N+1,vector<int>(N+1,-1));        // TC : (N*N*N)  SC:O(N*N) + O(N)
             // return memo(1,N,a,dp);
             
-            return tab(N,a);
+            return tab(N,a);                                        // TC : (N*N*N)  SC:O(N*N)
         }
 };
 

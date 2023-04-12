@@ -27,7 +27,7 @@ public:
 
     int tab(int n)
     {
-        vector<int> dp(n + 1, -1);
+        vector<int> dp(n + 1, 0);
 
         dp[0] = 0;
         dp[1] = 1;

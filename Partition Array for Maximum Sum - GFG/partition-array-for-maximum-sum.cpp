@@ -66,14 +66,15 @@ public:
     }    
     
     int solve(int n, int k, vector<int>& arr){
-        // Code here
 
-        // return recur(0,k,n,arr);
+        // return recur(0,k,n,arr);    // TC :  Exponential 
+                                       // SC : O(N)
 
-        // vector<int> dp(n,-1);
-        // return memo(0,k,n,arr,dp);
+        // vector<int> dp(n,-1);       // TC : O(N*k)
+        // return memo(0,k,n,arr,dp);  // SC : O(N) + Auxiliary stack space O(N)
 
-        return tab(k,n,arr);
+        return tab(k,n,arr);           // TC : O(N*k) 
+                                       // SC : O(N)
     }
 };
 

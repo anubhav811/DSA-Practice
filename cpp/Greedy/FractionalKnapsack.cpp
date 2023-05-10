@@ -2,37 +2,29 @@
 using namespace std;
 class Solution
 {
-    static bool comp(Item a, Item b){
-        return ((double)a.value/(double)a.weight > (double)b.value/(double)b.weight);
-    }
     public:
-    //Function to get the maximum total value in the knapsack.
+    static bool comp(Item i1,Item i2){
+        return (double)i1.value/(double)i1.weight > (double)i2.value/(double)i2.weight;
+    }
     double fractionalKnapsack(int W, Item arr[], int n)
     {
-        // Your code here
-        
+        double res = 0 ;
         sort(arr,arr+n,comp);
         
-        double res = 0;
-        double wt = 0;
-        
-        int i = 0;
-        
-        while(i<n){
-            
-            if(wt==W)
-                return res;
-
-            if(wt+arr[i].weight <= W){
+        int totWt = 0;
+        for(int i=0;i<n;i++){
+            if(totWt + arr[i].weight <=W){
                 res+=arr[i].value;
-                wt+=arr[i].weight;
+                totWt+=arr[i].weight;
             }
             else{
-                int extra = W-wt;
-                res+=((double)arr[i].value/(double)arr[i].weight)*(double)(W-wt);
+                int rem = W - totWt;
+                double fraction = arr[i].value/(double)arr[i].weight;
+                double val = fraction * (double)rem;
+                res+=val;
+                totWt+=rem;
                 break;
             }
-            i++;
         }
         
         return res;

@@ -2,26 +2,20 @@
 using namespace std;
 class Solution{
 public:
-    vector<int> minPartition(int N)
-    {
-        vector<int> coins = {2000,500,200,100,50,20,10,5,2,1};
+    vector<int> minPartition(int N){
         
-        vector<int> ans ;
-        int i = 0;
-        int sum = 0;
-        while(i<coins.size()){
-            
-            if(sum==N) break;
-            
-            if(sum+coins[i]<=N){
-                sum+=coins[i];
-                ans.push_back(coins[i]);
-            }else{
-                i++;
-            }
-        }
+        vector<int> den = {2000,500,200,100,50,20,10,5,2,1};
         
-        return ans;
+        int val=0 ,i=0;
+        vector<int> coins ;
 
+        while(i<den.size()){
+            if(den[i]+val <= N){
+                val+=den[i];
+                coins.push_back(den[i]);
+            }
+            else i++;
+        }
+        return coins;
     }
 };

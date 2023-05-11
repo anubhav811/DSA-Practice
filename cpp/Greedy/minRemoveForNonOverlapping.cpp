@@ -19,19 +19,18 @@ public:
                 continue;
             }
             // case 2 (Overlapping : Remove Right Interval)
-            else if(intervals[l][1]<=intervals[r][1]){
+            else if(intervals[l][1]>intervals[r][0] and intervals[l][1]<=intervals[r][1]){
                 r++;
                 count++;
             }
             
             // case 3 (Overlapping : Remove left Interval)
-            else if(intervals[l][1]>intervals[r][1]){
+            else if(intervals[l][1]>intervals[r][1] and intervals[l][0]<intervals[r][0]){
                 count++;
                 l=r;
                 r++;
             }
-        }
-        
+        }        
         return count;
     }
 };

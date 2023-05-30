@@ -6,48 +6,37 @@ using namespace std;
 // } Driver Code Ends
 class Solution{
     public:
+    int lenOfLongSubarr(int a[],  int N, int k) { 
+        map<int, int> preSumMap;
+        int sum = 0;
+        int maxLen = 0;
+        for (int i = 0; i < N; i++) {
+            //calculate the prefix sum till index i:
+            sum += a[i];
     
-      // only works for positive elements
+            // if the sum = k, update the maxLen:
+            if (sum == k) {
+                maxLen = max(maxLen, i + 1);
+            }
     
-    int lenOfLongSubarr(int A[],  int N, int K) {
-        
-        // Optimized
-        unordered_map<int,int> mp;
-        int sum=0;
-        int res=0;
-        for(int i=0;i<N;i++){
-            sum+=A[i];
-            if(sum==K){
-                res=i+1;
+            // calculate the sum of remaining part i.e. x-k:
+            int rem = sum - k;
+    
+            //Calculate the length and update maxLen:
+            if (preSumMap.find(rem) != preSumMap.end()) {
+                int len = i - preSumMap[rem];
+                maxLen = max(maxLen, len);
             }
-            else if(mp.find(sum-K) != mp.end()){
-                res = max(res,i-mp[sum-K]);
-            }
-            if(mp.find(sum) == mp.end()){
-                mp[sum]=i;
+    
+            //Finally, update the map checking the conditions:
+            if (preSumMap.find(sum) == preSumMap.end()) {
+                preSumMap[sum] = i;
             }
         }
         
-        return res;
-     
-        
-        // Brute force -> store sum as key , and the length with which we get that sum as value
-        
-        // unordered_map<int,int> mp;
-        // for(int i=0;i<N;i++){
-        //     int sum = 0;
-        //     for(int j=i;j<N;j++){
-        //         sum+=A[j];
-        //         if(mp.find(sum)!=mp.end()){
-        //             int val = max(mp[sum],j-i+1);
-        //             mp[sum] = val;
-        //         }else{
-        //             mp[sum] = j-i+1;
-        //         }
-        //     }
-        // }
-        // return mp[K]!=NULL?mp[K]:0;
-    } 
+        return maxLen;
+    }
+
 };
 
 //{ Driver Code Starts.

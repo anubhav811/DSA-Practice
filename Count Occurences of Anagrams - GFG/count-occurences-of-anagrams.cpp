@@ -9,44 +9,35 @@ using namespace std;
 class Solution{
 public:
 	int search(string pat, string txt) {
-
-	    int i=0,j=0,ans = 0,count=0;
-	    int k = pat.size();
 	    
-	    map<char,int> m;
-	    for(auto s : pat){
-	        m[s]++;
-	    }
+	    map<char,int> mp1 , mp2;
+	    for(auto it:pat) mp1[it]++;
 	    
-	    count = m.size();
+	    int K = pat.size();
 	    
-	    int occ = 0;
+	    int i=0,j=0;
+	    
+	    int count = 0;
 	    
 	    while(j<txt.size()){
+	        mp2[txt[j]]++;
 	        
-	        if(m.find(txt[j])!=m.end()){
-	            m[txt[j]]--;
-	            if(m[txt[j]]==0)
-	                count--;
-	        }
-	        if(j-i+1<k){
+	        if(j-i+1<K){
 	            j++;
 	        }
-	        else if(j-i+1==k){
-	           if(count==0)
-	               occ++;
-	           if(m.find(txt[i]) != m.end()){
-	                m[txt[i]]++;
-	                if(m[txt[i]]==1){
-	                    count++;
-	                }
-	           }
-	           i++;
-	           j++;
+	        else if(j-i+1==K){
+	            if(mp2==mp1) count++;
+	            
+	            mp2[txt[i]]--;
+	            if(mp2[txt[i]]==0) mp2.erase(txt[i]);
+	  
+	            i++;
+	            j++;
 	        }
-}
-	    return occ;
 	    }
+	    
+	    return count;
+	}
 
 };
 

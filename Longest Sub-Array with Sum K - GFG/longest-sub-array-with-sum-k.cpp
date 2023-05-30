@@ -6,36 +6,33 @@ using namespace std;
 // } Driver Code Ends
 class Solution{
     public:
-    int lenOfLongSubarr(int a[],  int N, int k) { 
-        map<int, int> preSumMap;
+    int lenOfLongSubarr(int nums[],  int N, int K) 
+    { 
         int sum = 0;
-        int maxLen = 0;
+        int maxi = 0;
+        map<int,int> mp;
+        
         for (int i = 0; i < N; i++) {
-            //calculate the prefix sum till index i:
-            sum += a[i];
-    
-            // if the sum = k, update the maxLen:
-            if (sum == k) {
-                maxLen = max(maxLen, i + 1);
+            sum+=nums[i];
+            
+            if(sum==K){
+                maxi = max(maxi,i+1);
             }
-    
-            // calculate the sum of remaining part i.e. x-k:
-            int rem = sum - k;
-    
-            //Calculate the length and update maxLen:
-            if (preSumMap.find(rem) != preSumMap.end()) {
-                int len = i - preSumMap[rem];
-                maxLen = max(maxLen, len);
+            
+            int rem = sum-K;
+            
+            if(mp.find(rem)!=mp.end()){
+                int len = i-mp[rem];
+                maxi = max(maxi,len);
             }
-    
-            //Finally, update the map checking the conditions:
-            if (preSumMap.find(sum) == preSumMap.end()) {
-                preSumMap[sum] = i;
+            
+            if(mp.find(sum)==mp.end()){
+                mp[sum] = i;
             }
         }
         
-        return maxLen;
-    }
+        return maxi;
+    } 
 
 };
 

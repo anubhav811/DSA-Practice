@@ -9,32 +9,39 @@ class Solution
     public:
     //Function to find the smallest window in the string s consisting
     //of all the characters of string p.
-    string smallestWindow (string s, string t)
+    string smallestWindow (string s, string p)
     {
-        unordered_map<char, int>map;
-        unordered_map<int, int>ans;  
-        for(auto x : t) 
-            map[x]++;
-        int i = 0, j = 0, count = map.size(), minsize = INT_MAX, n = s.size();
+        unordered_map<char,int> mp;
+        for(auto it:p) mp[it]++;
+        
+        // int ansSize
+        pair<int,int>  ans ={0,s.size()} ;
+        int count = mp.size();
+        
+        int i=0,j=0;
+        
         bool flag = true;
-        while(j<n){
-            if(map.find(s[j]) != map.end()){
-                map[s[j]]--;
-                if(map[s[j]] == 0) 
-                    count--; 
-               }
-            if(count > 0) 
+        while(j<s.size()){
+            if(mp.find(s[j])!=mp.end()){
+                mp[s[j]]--;
+                if(mp[s[j]]==0) count--;
+            }
+            
+            if(count>0){
                 j++;
-            else if (count == 0){
+            }
+            else if(count==0){
                 flag = false;
-                while(count == 0){
-                    minsize = min(minsize, j-i+1);
-                    if(ans.find(minsize) == ans.end())
-                        ans[minsize] = i; 
-                    if(map.find(s[i]) != map.end())
+                while(count==0){
+                    int winSize = j-i+1;
+                    int currMin = ans.second-ans.first+1;
+                    if(winSize<currMin){
+                        ans={i,j};
+                    }
+                    if(mp.find(s[i]) != mp.end())
                     {
-                        map[s[i]]++;
-                        if(map[s[i]] == 1) 
+                        mp[s[i]]++;
+                        if(mp[s[i]] == 1) 
                             count++; 
                     }
                     i++;
@@ -42,12 +49,12 @@ class Solution
                 j++;
             }
         }
-        if(flag) 
-            return "-1";
-        string a;
-        for(int j = ans[minsize]; j< ans[minsize] + minsize; j++) 
-            a.push_back(s[j]);
-        return a;
+        
+        if(flag) return "-1";
+        
+        string res;
+        for(int x=ans.first;x<=ans.second;x++) res.push_back(s[x]);
+        return res;
     }
 };
 

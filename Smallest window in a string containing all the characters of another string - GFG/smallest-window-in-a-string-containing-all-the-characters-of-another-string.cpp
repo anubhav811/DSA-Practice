@@ -9,11 +9,11 @@ class Solution
     public:
     //Function to find the smallest window in the string s consisting
     //of all the characters of string p.
-    string smallestWindow (string s, string p){
-        
+    string smallestWindow (string s, string t)
+    {
         unordered_map<char, int>map;
         unordered_map<int, int>ans;  
-        for(auto x : p) 
+        for(auto x : t) 
             map[x]++;
         int i = 0, j = 0, count = map.size(), minsize = INT_MAX, n = s.size();
         bool flag = true;
@@ -48,7 +48,7 @@ class Solution
         for(int j = ans[minsize]; j< ans[minsize] + minsize; j++) 
             a.push_back(s[j]);
         return a;
-    }    
+    }
 };
 
 //{ Driver Code Starts.

@@ -39,7 +39,7 @@ public:
             if (hashcode < 0) hashcode += base;
             if (hashcode == patCode)
             {
-                if (txt.substr(i - m + 1, m) == pat) res.push_back(i - m + 2);
+                if (txt.substr(i - m + 1, m) == pat) res.push_back(i - m + 1+1);
             }
         }
         

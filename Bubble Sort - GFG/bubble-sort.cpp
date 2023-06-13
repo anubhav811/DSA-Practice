@@ -29,10 +29,10 @@ class Solution
             for(int j=0;j<=i-1;j++){
                 if(arr[j]>arr[j+1]){
                     swap(arr[j],arr[j+1]);
-                    swaps+
+                    swaps++;
                 }
             }
-            if(swaps) break;
+            if(!swaps) break;
         }
     }
 };

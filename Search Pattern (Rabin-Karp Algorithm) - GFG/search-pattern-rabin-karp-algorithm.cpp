@@ -7,51 +7,45 @@ using namespace std;
 class Solution
 {
 public:
-    int prime = 101;
-    
-    long calculateHash(string s , int len){
-        long hash = 0;
-        for(int i=0;i<len;i++){
-            hash += s[i]*pow(prime,i);
-        }
-        return hash;
-    }
-    
-    
-    long recalculateHash(string s, int oldIdx , int newIdx , long oldHash, int patLen){
-        long newHash = oldHash - s[oldIdx];
-        newHash = newHash/prime;
-        newHash += s[newIdx]*pow(prime,patLen-1);
-        return newHash;
-    }
-    
+    int base = 1e6;
+
     vector<int> rabinKarp(string pat,string txt){
         int m = pat.size();
         int n = txt.size();
         vector<int> res;
         
-        // calculating pattern hash
-        long patHash = calculateHash(pat,m);
+        int power = 1;
+        // finding m-1th power
+        for (int i = 0; i < m; i++)
+        {
+            power = (power *31) % base;
+        }
 
-        // calculating text hash (create upto size of pattern for now (m))
-        long txtHash = calculateHash(txt,m);
-        
-        
-        for(int i=1;i<=n-m+1;i++){
-            if(patHash==txtHash){
-                if(txt.substr(i-1,m)==pat){
-                    res.push_back(i);
-                }
+        // finding patternCode
+        int patCode = 0;
+        for (int i = 0; i < m; i++)
+        {
+            patCode = (patCode *31 + pat[i]) % base;
+        }
+        int hashcode = 0;
+        for (int i = 0; i < txt.size(); i++)
+        {
+            hashcode = (hashcode *31 + txt[i]) % base;
+            if (i < m - 1) continue;
+            if (i >= m)
+            {
+                hashcode = (hashcode - txt[i - m] *power) % base;
             }
-            
-            // further string is left to be checked 
-            if(i<n-m+1){
-                txtHash = recalculateHash(txt, i - 1, i + m - 1, txtHash, m);
+            if (hashcode < 0) hashcode += base;
+            if (hashcode == patCode)
+            {
+                if (txt.substr(i - m + 1, m) == pat) res.push_back(i - m + 2);
             }
         }
         
         return (res.size()) ? res : vector<int>(1,-1);
     }
+
     vector <int> search(string pat, string txt){
         return rabinKarp(pat,txt);
     }

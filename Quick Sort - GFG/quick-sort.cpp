@@ -34,7 +34,7 @@ class Solution
         int j=high;
         
         while(i<j){
-            while(i<=high and arr[i]<pivot) i++;
+            while(i<=high and arr[i]<=pivot) i++;
             while(j>=low and arr[j]>pivot) j--;
             
             if(i<j)

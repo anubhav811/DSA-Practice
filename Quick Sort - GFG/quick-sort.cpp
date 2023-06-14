@@ -16,7 +16,6 @@ void printArray(int arr[], int size)
 class Solution
 {
     public:
-    //Function to sort an array using quick sort algorithm.
     void quickSort(int arr[], int low, int high)
     {
         if(low<high){
@@ -25,17 +24,16 @@ class Solution
             quickSort(arr,partition_idx+1,high);
         }
     }
-    
-    public:
     int partition (int arr[], int low, int high)
     {
-        int pivot = arr[low];
         int i=low;
         int j=high;
         
         while(i<j){
-            while(i<=high and arr[i]<=pivot) i++;
-            while(j>=low and arr[j]>pivot) j--;
+            while(i<=high and arr[i]<=arr[low]) 
+                i++;
+            while(j>=low and arr[j]>arr[low]) 
+                j--;
             
             if(i<j)
                 swap(arr[i],arr[j]);

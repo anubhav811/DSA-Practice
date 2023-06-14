@@ -21,21 +21,37 @@ class Solution
     {
         //code here
     }
+    
+    void recur(int arr[],int i , int n){
+        if(i==n) return;
+        
+        for(int j=i;j>=1;j--){
+            if(arr[j]<arr[j-1]){
+                int temp = arr[j];
+                arr[j] = arr[j-1];
+                arr[j-1] = temp;  
+            }
+        }
+        
+        recur(arr,i+1,n);
+    }
      public:
     //Function to sort the array using insertion sort algorithm.
     void insertionSort(int arr[], int n)
     {
-        for(int i=1;i<n;i++){
-            if(arr[i]<arr[i-1]){
-                for(int j=i;j>=1;j--){
-                    if(arr[j]<arr[j-1]){
-                        int temp = arr[j];
-                        arr[j] = arr[j-1];
-                        arr[j-1] = temp;
-                    }
-                }
-            }
-        }
+        // for(int i=1;i<n;i++){
+        //     if(arr[i]<arr[i-1]){
+        //         for(int j=i;j>=1;j--){
+        //             if(arr[j]<arr[j-1]){
+        //                 int temp = arr[j];
+        //                 arr[j] = arr[j-1];
+        //                 arr[j-1] = temp;
+        //             }
+        //         }
+        //     }
+        // }
+        
+        recur(arr,1,n);
     }
 };
 

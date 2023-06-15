@@ -4,35 +4,49 @@ using namespace std;
 
 
 // } Driver Code Ends
+
 class Solution{
     public:
-    int lenOfLongSubarr(int nums[],  int N, int K) 
-    { 
-        int sum = 0;
-        int maxi = 0;
-        map<int,int> mp;
-        
-        for (int i = 0; i < N; i++) {
-            sum+=nums[i];
+    int lenOfLongSubarr(int a[],  int N, int k) { 
+       
+         // Approach 2: Hashing 
+         int maxi = 0;
+         unordered_map<int,int> mp;
+         int i=0;
+         int sum = 0;
+         while(i<N){
+            sum+=a[i];
+            if(sum==k)
+                maxi=max(maxi,i+1);
+            int target = sum-k;
             
-            if(sum==K){
-                maxi = max(maxi,i+1);
-            }
-            
-            int rem = sum-K;
-            
-            if(mp.find(rem)!=mp.end()){
-                int len = i-mp[rem];
-                maxi = max(maxi,len);
+            if(mp.find(target)!=mp.end()){
+                int idx = mp[target];
+                maxi = max(maxi,i-idx);
             }
             
             if(mp.find(sum)==mp.end()){
-                mp[sum] = i;
+                mp[sum]=i;
             }
-        }
-        
-        return maxi;
-    } 
+            
+            i++;
+         }
+         return maxi;
+         
+         
+    //   // Approach 1  : For loops O(N^2)
+    //   int maxi = 0;
+    //   for(int i=0;i<N;i++){
+    //       int sum = 0;
+    //       for(int j=i;j<N;j++){
+    //           sum+=a[j];
+    //           if(sum==k){
+    //               maxi = max(maxi,j-i+1);
+    //           }
+    //       }
+    //   }
+    //   return maxi;
+    }
 
 };
 

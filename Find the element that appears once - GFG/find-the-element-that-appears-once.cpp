@@ -17,7 +17,7 @@ public:
         
         return xorr;
         
-        // approach 1 hashmap TC:O(N) SC:O(N)
+        // approach 1 hashmap TC:O(N) SC:O(N) -> TLE
         // map<int,int> mp;
         // for(int i=0;i<N;i++){
         //     mp[A[i]]++;

@@ -25,6 +25,7 @@ class Solution{
                 maxi = max(maxi,i-idx);
             }
             
+            // if a sum previously exists we shouldnt re update . because we need longest subarray
             if(mp.find(sum)==mp.end()){
                 mp[sum]=i;
             }

@@ -26,13 +26,22 @@ int main()
 int missingNumber(int nums[], int n)
 {
         // TC: O(N) and SC:O(N)      
-        int sum = (n*(n+1))/2;
-
+        int xor1 = 0 , xor2 = 0;
         for(int i=0;i<n-1;i++){
-            sum-=nums[i];
+            xor1^=nums[i];
+            xor2^=(i+1);
         }
+        xor2^=n;
+        return xor1^xor2;
 
-        return sum;
+        // TC: O(N) and SC:O(N)      
+        // int sum = (n*(n+1))/2;
+
+        // for(int i=0;i<n-1;i++){
+        //     sum-=nums[i];
+        // }
+
+        // return sum;
         
         // TC: O(N) and SC:O(N)      
         // vector<int> vis(n+1);

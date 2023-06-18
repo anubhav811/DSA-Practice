@@ -8,7 +8,7 @@ class Solution
 {   
     public:
     //Function to rotate matrix anticlockwise by 90 degrees.
-    void rotateby90(vector<vector<int> >& matrix, int n) 
+    void rotateby90(vector<vector<int>>& matrix, int n) 
     { 
 
         for(int i=0;i<n;i++){
@@ -16,8 +16,8 @@ class Solution
                 swap(matrix[i][j],matrix[j][i]);
             }
         }
-        
         reverse(matrix.begin(),matrix.end());
+        
         
     } 
 };

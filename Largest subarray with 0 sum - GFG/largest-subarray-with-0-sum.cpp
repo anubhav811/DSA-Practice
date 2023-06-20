@@ -20,7 +20,7 @@ class Solution{
         while(i<n){
             sum+=A[i];
             if(sum==0){
-                maxi = i+1;
+                maxi = max(maxi,i+1);
             }
             else{
                 if(mp.find(sum)!=mp.end()){

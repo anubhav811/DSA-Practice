@@ -10,6 +10,9 @@ class Solution{
         void merge(long long arr1[], long long arr2[], int n, int m) 
         { 
             
+            // Optimal 2 : TC: 
+            // Optimal 1 : TC : O(min(N,M) + O(nlogn) + O(mlogm))
+                        // SC: O(1)
             int i = n - 1;
             int j = 0;
         

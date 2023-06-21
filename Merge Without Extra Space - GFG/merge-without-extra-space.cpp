@@ -7,27 +7,63 @@ using namespace std;
 class Solution{
     public:
         //Function to merge the arrays.
+        void swapIfGreater(long long arr1[],long long arr2[] , int i , int j){
+            
+            if(arr1[i]>arr2[j]){
+                swap(arr1[i],arr2[j]);
+            }
+        }
         void merge(long long arr1[], long long arr2[], int n, int m) 
         { 
             
-            // Optimal 2 : TC: 
+            // Optimal 2 : Gap Method TC:
+            int len = n+m;
+    int gap = (len / 2) + (len % 2);
+            while(gap>0){
+                int left = 0;
+                int right = left + gap;
+                while(right<len){
+                    
+                    // arr1 and arr2
+                    if(left<n and right>=n){
+                        swapIfGreater(arr1,arr2,left,right-n);
+                    }
+                    
+                    // arr1 and arr1
+                             else if (left >= n) {
+                swapIfGreater(arr2, arr2, left - n, right - n);
+            }
+            // case 3: both pointers in arr1[]:
+            else {
+                swapIfGreater(arr1, arr1, left, right);
+            }
+
+                    
+                    left++,right++;
+                    
+                }
+                if(gap==1) break;
+        gap = (gap / 2) + (gap % 2);
+            }
+            
+            
             // Optimal 1 : TC : O(min(N,M) + O(nlogn) + O(mlogm))
                         // SC: O(1)
-            int i = n - 1;
-            int j = 0;
+            // int i = n - 1;
+            // int j = 0;
         
-            while (i >= 0 && j < m) {
-                if (arr1[i] > arr2[j]) {
-                    swap(arr1[i], arr2[j]);
-                    i--, j++;
-                }
-                else {
-                    break;
-                }
-            }
+            // while (i >= 0 && j < m) {
+            //     if (arr1[i] > arr2[j]) {
+            //         swap(arr1[i], arr2[j]);
+            //         i--, j++;
+            //     }
+            //     else {
+            //         break;
+            //     }
+            // }
         
-            sort(arr1, arr1 + n);
-            sort(arr2, arr2 + m);
+            // sort(arr1, arr1 + n);
+            // sort(arr2, arr2 + m);
           
 
             // Brute Force  Tc:O(N+M) Sc:O(N+M)

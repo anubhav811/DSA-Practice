@@ -65,7 +65,7 @@ class Solution{
         }
         
         
-        Node* node = (len%2==0) ? reverseLL(slow) : reverseLL(slow->next) ;
+        Node* node = reverseLL(slow) ;
         
         while(node and head){
             if(head->data!=node->data){

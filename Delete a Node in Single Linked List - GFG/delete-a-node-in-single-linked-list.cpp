@@ -86,7 +86,10 @@ struct Node
 /*You are required to complete below method*/
 Node* deleteNode(Node *head,int x)
 {
-    if(x==1) return head->next;
+    if(x==1){
+        head = head->next;
+        return head;
+    }
     Node* itr = head;
     x = x-1;
     while(itr->next and --x){
@@ -96,7 +99,7 @@ Node* deleteNode(Node *head,int x)
     Node* nodeToBeDeleted = itr->next;
     itr->next = itr->next->next;
     
-    nodeToBeDeleted->next = NULL;
+    delete nodeToBeDeleted;
     
     return head;
 }

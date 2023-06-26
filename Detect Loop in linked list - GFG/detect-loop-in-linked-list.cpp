@@ -48,17 +48,30 @@ class Solution
     //Function to check if the linked list has a loop.
     bool detectLoop(Node* head)
     {
-        Node* slow = head;
-        Node* fast = head;
+        // Hashing
         
-        while(fast and fast->next){
-            slow = slow->next;
-            fast = fast->next->next;
-            if(slow==fast) 
+        map<Node*,int> mp;
+        Node* itr = head;
+        while(itr){
+            if(mp.find(itr)!=mp.end())
                 return true;
+            mp[itr]++;
+            itr = itr->next;
         }
         
         return false;
+        // Optimal 
+        // Node* slow = head;
+        // Node* fast = head;
+        
+        // while(fast and fast->next){
+        //     slow = slow->next;
+        //     fast = fast->next->next;
+        //     if(slow==fast) 
+        //         return true;
+        // }
+        
+        // return false;
     }
 };
 

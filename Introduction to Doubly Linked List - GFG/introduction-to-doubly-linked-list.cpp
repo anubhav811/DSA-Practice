@@ -67,6 +67,7 @@ class Solution {
             temp->prev = prv;
             prv = temp;
         }
+        prv->next = NULL;
         
         return head;
     }

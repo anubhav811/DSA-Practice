@@ -49,12 +49,10 @@ class Solution{
             len++;
         }
         
-        int k = len/2 + 1 ;
         itr = head;
-        k=k-1;
-        while(k--){
-            itr = itr->next;
-        }
+    	for(int i=0;i<len/2;i++){
+        	itr = itr->next;
+    	}
         
         return itr->data;
         

@@ -60,15 +60,11 @@ class Solution {
             
         Node* head = new Node(arr[0]);
         head->prev = NULL;
-        
-        if(arr.size()>1)
-            head->next = new Node(arr[1]);
-        
         Node* prv = head;
         for(int i=1;i<arr.size();i++){
-            Node* temp = prv->next;
+            Node* temp = new Node(arr[i]);
+            prv->next = temp;
             temp->prev = prv;
-            temp->next = (i+1<arr.size()) ? new Node(arr[i+1]) : NULL;
             prv = temp;
         }
         

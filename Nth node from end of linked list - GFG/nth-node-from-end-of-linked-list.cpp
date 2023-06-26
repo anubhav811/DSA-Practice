@@ -41,25 +41,42 @@ class Solution{
 public:
     int getNthFromLast(Node *head, int n)
     {
+        // // Optimal : Slow fast -> TC:O() SC:O(1)
+        // Node * start = new Node();
+        // start -> next = head;
+        // Node* fast = start;
+        // Node* slow = start;     
+
+        // for(int i = 0; i < n; i++)
+        //     fast = fast->next;
+    
+        // while(fast->next)
+        // {
+        //     fast = fast->next;
+        //     slow = slow->next;
+        // }
         
+        // slow->next = slow->next->next;
+        
+        // return start->next;
+
+        // Brute Force TC:O(N+pos)
         int len = 0;
         Node* itr = head;
         while(itr){
             itr = itr->next;
             len++;
         }
-        
         if(n>len) return -1;
-        
         int k = len-n;
-        
+
         itr = head;
+     
         for(int i=0;i<k;i++){
             itr=itr->next;
         }
-     
-        
         return itr->data;
+  
     }
 };
 

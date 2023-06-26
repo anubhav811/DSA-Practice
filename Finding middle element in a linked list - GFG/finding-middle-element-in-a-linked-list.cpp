@@ -41,20 +41,32 @@ class Solution{
     /* Should return data of middle node. If linked list is empty, then  -1*/
     int getMiddle(Node *head)
     {
-        // Brute Force 
-        int len = 0;
-        Node* itr = head;
-        while(itr){
-            itr = itr->next;
-            len++;
+        
+        // Optimal  -> Slow fast 
+        
+        Node* slow = head;
+        Node* fast = head;
+        
+        while(fast and fast->next){
+            slow = slow->next;
+            fast = fast->next->next;
         }
         
-        itr = head;
-    	for(int i=0;i<len/2;i++){
-        	itr = itr->next;
-    	}
+        return slow->data;
+    //     //Brute Force -> Find len and then traverse till middle
+    //     int len = 0;
+    //     Node* itr = head;
+    //     while(itr){
+    //         itr = itr->next;
+    //         len++;
+    //     }
         
-        return itr->data;
+    //     itr = head;
+    // 	for(int i=0;i<len/2;i++){
+    //     	itr = itr->next;
+    // 	}
+        
+    //     return itr->data;
         
     }
 };

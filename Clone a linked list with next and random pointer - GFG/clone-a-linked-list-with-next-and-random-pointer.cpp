@@ -24,23 +24,51 @@ class Solution
     Node *copyList(Node *head)
     {
         
+        if(!head) return NULL;
         
-        // Brute Force : Hashing -> TC:O(2N*logn) [Map]
-                                //  TC:O(2N)      [Unordered Map]
-                                //  SC:O(N) 
-        unordered_map<Node*,Node*> deepCopy;
+        // Optimal -> TC: O(N+N+N)  SC:O(1)
         Node* itr = head;
         while(itr){
-            deepCopy[itr] = new Node(itr->data);
-            itr = itr->next;
+            Node* next = itr->next;
+            itr->next = new Node(itr->data);
+            itr->next->next=next;
+            itr=next;
         }
         itr = head;
         while(itr){
-            deepCopy[itr]->next = deepCopy[itr->next];
-            deepCopy[itr]->arb = deepCopy[itr->arb];
-            itr = itr->next;
+            itr->next->arb = (itr->arb) ? itr->arb->next : NULL;
+            itr=itr->next->next;
         }
-        return deepCopy[head];    
+        
+        Node* copy = head->next;
+        Node* copyItr = head->next;
+        itr = head;
+      
+        while(copyItr and itr){
+            itr->next = (itr->next) ? itr->next->next : itr->next;
+            copyItr->next = (copyItr->next) ? copyItr->next->next : copyItr->next;
+            itr=itr->next;
+            copyItr=copyItr->next;
+        }
+
+        return copy;
+        
+        // // Brute Force : Hashing -> TC:O(2N*logn) [Map]
+        //                         //  TC:O(2N)      [Unordered Map]
+        //                         //  SC:O(N) 
+        // unordered_map<Node*,Node*> deepCopy;
+        // Node* itr = head;
+        // while(itr){
+        //     deepCopy[itr] = new Node(itr->data);
+        //     itr = itr->next;
+        // }
+        // itr = head;
+        // while(itr){
+        //     deepCopy[itr]->next = deepCopy[itr->next];
+        //     deepCopy[itr]->arb = deepCopy[itr->arb];
+        //     itr = itr->next;
+        // }
+        // return deepCopy[head];    
         
         
     }

@@ -41,14 +41,13 @@ class Solution
     Node* deleteNode(Node *head, int x)
     {
         if(x==1){
-            // Node* node = head;
             head = head->next;
-            // delete(node);
             return head;
         }
         
         Node* itr= head;
-        for(int i=1;i<x-1;i++){
+        x=x-1;
+        while(itr->next and --x){
             itr = itr->next;
         }
 

@@ -32,9 +32,9 @@ class Solution
     
         if(!head) return 0;
         
-        int cnt = 1;
+        int cnt = 0;
         
-        while(head->next){
+        while(head){
             head=head->next;
             cnt++;
         }

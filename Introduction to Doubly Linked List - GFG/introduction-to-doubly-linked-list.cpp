@@ -62,10 +62,10 @@ class Solution {
         head->prev = NULL;
         Node* prv = head;
         for(int i=1;i<arr.size();i++){
-            Node* temp = new Node(arr[i]);
-            prv->next = temp;
-            temp->prev = prv;
-            prv = temp;
+            Node* node = new Node(arr[i]);
+            prv->next = node;
+            node->prev = prv;
+            prv = node;
         }
         prv->next = NULL;
         

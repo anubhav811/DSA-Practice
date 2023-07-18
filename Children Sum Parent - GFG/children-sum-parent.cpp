@@ -105,6 +105,9 @@ class Solution{
     public:
     //Function to check whether all nodes of a tree have the value 
     //equal to the sum of their child nodes.
+    bool isLeaf(Node* root){
+        return !root->left and !root->right;
+    }
     int isSumProperty(Node *root)
     {
         queue<Node*> q;
@@ -120,19 +123,14 @@ class Solution{
         
                 if(node->left){
                     sum+=node->left->data;
-                }
-                if(node->right){
-                    sum+=node->right->data;
-                }
-                
-                if((node->left or node->right) and sum!=node->data) return 0;
-                
-                if(node->left){
                     q.push(node->left);
                 }
                 if(node->right){
+                    sum+=node->right->data;
                     q.push(node->right);
                 }
+                
+                if(!isLeaf(node) and sum!=node->data) return 0;
                 
             }
         }

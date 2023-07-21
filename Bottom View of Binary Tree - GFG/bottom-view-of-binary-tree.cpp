@@ -97,32 +97,31 @@ class Solution {
   public:
     vector <int> bottomView(Node *root) {
         vector<int> res;
-        if(!root) return res; 
-        map<int,int> nodes;
+        if(!root) return res;
+        // line , node
+        map<int,int> mp;
         queue<pair<Node*,int>> q;
         q.push({root,0});
-        
         while(!q.empty()){
             auto it = q.front();
             q.pop();
-            
             Node* node = it.first;
             int line = it.second;
+            mp[line] = node->data;
             
-            // if(nodes.find(line)==nodes.end())
-            nodes[line] = node->data;
-            
-            if(node->left)
+            if(node->left){
                 q.push({node->left,line-1});
-            if(node->right)
+            }
+            if(node->right){
                 q.push({node->right,line+1});
+            }
         }
         
-        for(auto it:nodes){
+        for(auto it:mp){
             res.push_back(it.second);
         }
-        
-        return res;    }
+        return res;    
+    }
 };
 
 //{ Driver Code Starts.
